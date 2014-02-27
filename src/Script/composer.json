@@ -13,7 +13,7 @@
     },
     "autoload": {
 		"files": ["functions.php"],
-        "psr-4": {"Rocket\\UI\\Script": ""} 
+        "psr-4": {"Rocket\\UI\\Script\\": ""} 
     },
     "extra": {
         "branch-alias": {

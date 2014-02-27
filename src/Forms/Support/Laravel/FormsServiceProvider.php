@@ -15,7 +15,7 @@ class FormsServiceProvider extends ServiceProvider
     public function register()
     {
         $app = $this->app;
-        $app['config']->package('onigoetz/forms', __DIR__ . '/../../../config');
+        $app['config']->package('onigoetz/forms', __DIR__ . '/../../config');
         Forms::setConfig($app['config']->get('forms::forms'));
 
         //By doing it like this we allow it to be lazily loaded into the forms

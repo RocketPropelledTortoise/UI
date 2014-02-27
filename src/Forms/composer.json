@@ -18,7 +18,7 @@
     },
     "autoload": {
 		"files": ["functions.php"],
-        "psr-4": {"Rocket\\UI\\Forms": ""} 
+        "psr-4": {"Rocket\\UI\\Forms\\": ""} 
     },
     "extra": {
         "branch-alias": {
