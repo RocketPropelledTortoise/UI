@@ -6,7 +6,7 @@
 
 namespace Rocket\UI\Taxonomy;
 
-use \Rocket\Taxonomy;
+use \Rocket\Taxonomy\Facade as T;
 use \I18N;
 
 /**
@@ -28,7 +28,7 @@ class TreeTable
         $heads = [];
         if (!$short) {
             $heads = array();
-            if (\Taxonomy::isTranslatable($vid)) {
+            if (T::isTranslatable($vid)) {
                 foreach (I18N::languages() as $lang) {
                     $heads[] = __($lang['name'], array(), 'languages');
                 }
@@ -39,6 +39,7 @@ class TreeTable
             $heads[] = __('Action');
         }
 
+        //TODO :: externalize table
         echo \Table::quick($heads, $rows, array('id' => 'sortable'));
     }
 
@@ -56,11 +57,7 @@ class TreeTable
 
         foreach ($tree as $node) {
 
-            if ($short) {
-                $row = [self::getTitle($node)];
-            } else {
-                $row = self::getRow($node, $vid);
-            }
+            $row = ($short)? [self::getTitle($node)] : self::getRow($node, $vid);
 
             if ($parent != null) {
                 $rows[] = array('data' => $row, 'id' => 'n-'.$node['id'], 'class'  => 'child-of-n-'.$parent);
@@ -79,7 +76,7 @@ class TreeTable
 
     public static function getTitle($node)
     {
-        return '<span class="icon-taxonomy-'.\Taxonomy::vocabulary($node['vid']).'">&nbsp;</span>' . $node['data'][I18N::languages(1, 'iso')];
+        return '<span class="icon-taxonomy-'.T::vocabulary($node['vid']).'">&nbsp;</span>' . $node['data'][I18N::languages(1, 'iso')];
     }
 
     public static function getRow($node, $vid)
@@ -89,7 +86,7 @@ class TreeTable
         if (\Taxonomy::isTranslatable($vid)) {
             foreach (I18N::languages() as $lang => $d) {
                 if ($d['id'] == 1) {
-                    $row[] = '<span class="icon-taxonomy-'.\Taxonomy::vocabulary($node['vid']).'">&nbsp;</span>' . $node['data'][$lang];
+                    $row[] = '<span class="icon-taxonomy-'.T::vocabulary($node['vid']).'">&nbsp;</span>' . $node['data'][$lang];
                 } else {
                     $row[] = $node['data'][$lang];
                 }
