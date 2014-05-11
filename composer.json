@@ -17,6 +17,7 @@
         "rocket/forms": "self.version",
         "rocket/foundation": "self.version",
         "rocket/script": "self.version",
+        "rocket/table": "self.version",
         "rocket/taxonomy-ui": "self.version"
     },
     "require-dev": {
