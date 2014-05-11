@@ -140,7 +140,7 @@ class Field
         $default = $this->getDefaults() + ['value' => set_value($name), 'required' => form_field_required($name)];
 
         //Get the new values
-        $this->params = array_merge_recursive_distinct($default, $data);
+        $this->params = array_replace_recursive($default, $data);
     }
 
     /**

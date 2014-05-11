@@ -14,31 +14,20 @@ class FormsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $app = $this->app;
-        $app['config']->package('onigoetz/forms', __DIR__ . '/../../config');
-        Forms::setConfig($app['config']->get('forms::forms'));
+        $this->app['config']->package('rocket/forms', __DIR__ . '/../../config', 'rocket_forms');
+        Forms::setConfig($this->app['config']->get('rocket_forms::forms'));
 
         //By doing it like this we allow it to be lazily loaded into the forms
         Field::setJSResolver(
-            function () use ($app) {
-                return $app->make('js');
+            function () {
+                return $this->app->make('js');
             }
         );
 
         Field::setValidatorResolver(
-            function () use ($app) {
+            function () {
                 return new CodeIgniterFormValidator();
             }
         );
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return array();
     }
 }
