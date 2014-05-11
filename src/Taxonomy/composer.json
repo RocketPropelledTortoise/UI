@@ -13,8 +13,7 @@
         "rocket/foundation": "~1.0.0"
     },
     "autoload": {
-		"files": ["functions.php"],
-        "psr-4": {"Rocket\\UI\\Script\\": ""}
+        "psr-4": {"Rocket\\UI\\Taxonomy\\": ""}
     },
     "extra": {
         "branch-alias": {

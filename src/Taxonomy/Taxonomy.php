@@ -11,7 +11,7 @@ namespace Rocket\UI\Taxonomy;
 
 use Rocket\Taxonomy\Facade as T;
 use Rocket\Taxonomy\Model\Hierarchy;
-use Rocket\Taxonomy\Model\Term;
+use Rocket\Taxonomy\Model\TermContainer;
 use Rocket\Taxonomy\Model\TermData;
 use Rocket\Translation\I18NFacade as I18N;
 use Rocket\Utilities\ParentChildTree;
@@ -26,10 +26,10 @@ class Taxonomy
      */
     public static function getTree($vocabulary_id)
     {
-        $term_table = (new Term)->getTable();
+        $term_table = (new TermContainer)->getTable();
         $data_table = (new TermData)->getTable();
 
-        $terms = Term::select(
+        $terms = TermContainer::select(
             "$term_table.id",
             "$term_table.type",
             "$term_table.vocabulary_id",
