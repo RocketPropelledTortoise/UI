@@ -11,7 +11,8 @@
     "require": {
         "php": ">=5.4.0",
 		"rocket/core": "~1.0.0",
-		"illuminate/support": "~4.1.0"
+		"illuminate/support": "~4.1.0",
+        "msurguy/honeypot": "dev-master"
     },
     "replace": {
         "rocket/forms": "self.version",
