@@ -5,6 +5,8 @@
 
 namespace Rocket\UI\Table;
 
+use HTML;
+
 class Table
 {
     /**
