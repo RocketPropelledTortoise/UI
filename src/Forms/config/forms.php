@@ -17,6 +17,7 @@ return array(
         'select' => '\Rocket\UI\Forms\Fields\Select',
         'checkbox' => '\Rocket\UI\Forms\Fields\Checkbox',
         'hidden' => '\Rocket\UI\Forms\Fields\Hidden',
+        'honeypot' => '\Rocket\UI\Forms\Fields\Honeypot',
         'file' => '\Rocket\UI\Forms\Fields\File',
         'kaptcha' => '\Rocket\UI\Forms\Fields\Kaptcha'
     )
