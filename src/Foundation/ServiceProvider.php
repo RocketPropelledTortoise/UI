@@ -8,32 +8,50 @@ namespace Rocket\UI\Foundation;
 /**
  * Register special service providers
  */
-class ServiceProvider extends Illuminate\Support\ServiceProvider
+class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    public function register()
+    protected function loadFunctions()
     {
+        include __DIR__ . '/functions.php';
+    }
 
+    //TODO :: find a cleaner way to load events for all packages
+    protected function loadEvents()
+    {
+        include __DIR__ . '/events.php';
+    }
+
+    protected function registerViewNamespace()
+    {
+        $package = 'rocket/foundation';
+        $namespace = 'r_foundation';
+
+        // Next, we will see if the application view folder contains a folder for the
+        // package and namespace. If it does, we'll give that folder precedence on
+        // the loader list for the views so the package views can be overridden.
+        $appView = $this->getAppViewPath($package);
+        if ($this->app['files']->isDirectory($appView)) {
+            $this->app['view']->addNamespace($namespace, $appView);
+        }
+
+        $this->app['view']->addNamespace($namespace, __DIR__ . '/views');
     }
 
     /**
-     * Get the services provided by the provider.
-     *
-     * @return array
+     * {@inheritdoc}
      */
-    public function provides()
+    public function boot()
     {
-        return [];
+        $this->registerViewNamespace();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function register()
+    {
+        $this->loadFunctions();
+
+        $this->loadEvents();
     }
 }

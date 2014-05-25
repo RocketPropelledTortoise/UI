@@ -10,7 +10,8 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "rocket/forms": "~1.0.0"
+        "rocket/forms": "~1.0.0",
+        "rocket/assets": "~1.0.0"
     },
     "autoload": {
         "psr-4": {"Rocket\\UI\\Foundation\\": ""}
