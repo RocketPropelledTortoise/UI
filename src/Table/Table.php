@@ -5,8 +5,6 @@
 
 namespace Rocket\UI\Table;
 
-use HTML;
-
 class Table
 {
     /**
@@ -106,7 +104,7 @@ class Table
 
         $this->prepareTableClasses($has_header);
 
-        $output = '<table' . HTML::attributes($this->attributes) . ">\n";
+        $output = '<table' . $this->attributes($this->attributes) . ">\n";
 
         if (isset($this->caption)) {
             $output .= '<caption>' . $this->caption . "</caption>\n";
@@ -145,7 +143,7 @@ class Table
         }
 
         //if no class starts with "table-" will add striped tables
-        if (empty($this->attributes['class']) || !preg_in_array("/^table-/", $default_classes)) {
+        if (empty($this->attributes['class']) || !$this->is_in_array("/^table-/", $default_classes)) {
             $default_classes[] = 'table-striped';
         }
 
@@ -199,7 +197,7 @@ class Table
 
         if (count($cells)) {
             // Build row
-            $row_content .= '<tr' . HTML::attributes($attributes) . '>';
+            $row_content .= '<tr' . $this->attributes($attributes) . '>';
             foreach ($cells as $cell) {
                 $row_content .= $this->themeTableCell($cell, $header);
             }
@@ -225,7 +223,7 @@ class Table
             $header |= isset($cell['header']);
             unset($cell['data']);
             unset($cell['header']);
-            $attributes = HTML::attributes($cell);
+            $attributes = $this->attributes($cell);
         } else {
             $data = $cell;
         }
@@ -283,5 +281,44 @@ class Table
     {
         $table = new Table($header, $rows, $attributes, $caption);
         return $table->render();
+    }
+
+    protected function is_in_array($pattern, array $subjectArray, &$allMatches = array(), $flags = null, $offset = null)
+    {
+        foreach($subjectArray as $subject) {
+            if (preg_match($pattern, $subject, $matches, $flags, $offset)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Build an HTML attribute string from an array.
+     *
+     * Taken form Illuminate/html, copied as it has far too much dependencies (13 !) and we only need these 10 lines
+     *
+     * @param array $attributes
+     * @return string
+     */
+    protected function attributes($attributes)
+    {
+        $html = array();
+
+        // For numeric keys we will assume that the key and the value are the same
+        // as this will convert HTML attributes such as "required" to a correct
+        // form like required="required" instead of using incorrect numerics.
+        foreach ((array)$attributes as $key => $value) {
+            if (is_numeric($key)) {
+                $key = $value;
+            }
+
+            if (!is_null($value)) {
+                $html[] = $key . '="' . e($value) . '"';
+            }
+        }
+
+        return count($html) > 0 ? ' ' . implode(' ', $html) : '';
     }
 }
