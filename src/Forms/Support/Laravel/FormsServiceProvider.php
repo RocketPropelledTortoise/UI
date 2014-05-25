@@ -8,9 +8,7 @@ use Rocket\UI\Forms\Validators\CodeIgniterFormValidator;
 class FormsServiceProvider extends ServiceProvider
 {
     /**
-     * Register the service provider.
-     *
-     * @return void
+     * {@inheritdoc}
      */
     public function register()
     {
