@@ -12,9 +12,11 @@
         "php": ">=5.4.0",
 		"rocket/core": "~1.0.0",
 		"illuminate/support": "~4.1.0",
+        "kriswallsmith/assetic": "1.1.*",
         "msurguy/honeypot": "dev-master"
     },
     "replace": {
+        "rocket/assets": "self.version",
         "rocket/forms": "self.version",
         "rocket/foundation": "self.version",
         "rocket/script": "self.version",
