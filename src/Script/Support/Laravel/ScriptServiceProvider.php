@@ -15,37 +15,28 @@ use Illuminate\Support\ServiceProvider;
 class ScriptServiceProvider extends ServiceProvider
 {
     /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
-    /**
-     * Register the service provider.
-     *
-     * @return void
+     * {@inheritdoc}
      */
     public function register()
     {
-        $app = $this->app;
+        $this->loadEvents();
 
+        $this->shareJS();
+    }
+
+    protected function loadEvents()
+    {
+        include dirname(dirname(__DIR__)) . '/events.php';
+    }
+
+    protected function shareJS()
+    {
         $this->app['js'] = $this->app->share(
-            function () use ($app) {
-                $js = new JS(array());
-                $app['events']->fire('js.init', array($js));
+            function () {
+                $js = new JS([]);
+                $this->app['events']->fire('js.init', [$js]);
                 return $js;
             }
         );
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return array('js');
     }
 }
