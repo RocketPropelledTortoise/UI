@@ -283,6 +283,13 @@ class Table
         return $table->render();
     }
 
+    /**
+     * is in array ? with a regex as needle
+     *
+     * @param string $pattern
+     * @param array $subjectArray
+     * @return bool
+     */
     protected function is_in_array($pattern, array $subjectArray, &$allMatches = array(), $flags = null, $offset = null)
     {
         foreach($subjectArray as $subject) {
@@ -310,9 +317,9 @@ class Table
         // as this will convert HTML attributes such as "required" to a correct
         // form like required="required" instead of using incorrect numerics.
         foreach ((array)$attributes as $key => $value) {
-            if (is_numeric($key)) {
-                $key = $value;
-            }
+            //if (is_numeric($key)) { //should not happen
+            //    $key = $value;
+            //}
 
             if (!is_null($value)) {
                 $html[] = $key . '="' . e($value) . '"';
