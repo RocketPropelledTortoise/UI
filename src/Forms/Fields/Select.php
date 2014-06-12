@@ -13,27 +13,6 @@ namespace Rocket\UI\Forms\Fields;
  */
 class Select extends Field
 {
-    /**
-     * Renders width for the select box
-     */
-    protected function width()
-    {
-        if (!$this->isLegacy()) {
-            parent::width();
-            return;
-        }
-
-        if (strpos($this->params['width'], '%') or strpos($this->params['width'], 'em')
-            or strpos($this->params['width'], 'px')) {
-            $this->label_attributes['style']['width'] = $this->params['width'];
-            $this->label_attributes['class'][] = 'columns';
-
-            $this->input_attributes['style']['width'] = $this->params['width'];
-        } elseif ($this->params['width'] != 0) {
-            $this->label_attributes['class'][] = 'columns-' . $this->params['width'];
-            $this->label_attributes['class'][] = 'span' . $this->params['width'];
-        }
-    }
 
     /**
      * Adds attributes to the field

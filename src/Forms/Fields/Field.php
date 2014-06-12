@@ -197,12 +197,6 @@ class Field
         return self::$validator;
     }
 
-
-    protected function isLegacy()
-    {
-        return \Config::get('application.forms.legacy', false);
-    }
-
     /**
      * Get the default values array
      *
@@ -226,10 +220,6 @@ class Field
                 'slider' => true
             ),
         );
-
-        if ($this->isLegacy()) {
-            $defaults['width'] = 4;
-        }
 
         return $defaults;
     }
@@ -384,7 +374,6 @@ class Field
             strpos($this->params['width'], 'em') or
             strpos($this->params['width'], 'px')
         ) {
-
             $this->label_attributes['style']['width'] = $this->params['width'];
 
             if (strpos($this->params['width'], 'px')) {
@@ -393,14 +382,17 @@ class Field
                 $this->params['width'] = $w . 'px';
             }
             $this->input_attributes['style']['width'] = $this->params['width'];
-        } elseif ($this->params['width'] != 0) {
-            if ($this->isLegacy()) {
-                $this->label_attributes['class'][] = 'span' . $this->params['width']; //Bootstrap2
-            }
-            $this->label_attributes['class'][] = 'col-xs-' . $this->params['width']; //Bootstrap3
-            //TODO :: add Bootstrap3 Col Type
-        } elseif ($this->params['width'] == 0) {
-            $this->label_attributes['class'][] = 'col-full'; //Bootstrap3
+            return;
+        }
+
+        if ($this->params['width'] != 0) {
+            $this->label_attributes['class'][] = 'col-xs-' . $this->params['width'];
+            return;
+        }
+
+        if ($this->params['width'] == 0) {
+            $this->label_attributes['class'][] = 'col-full';
+            return;
         }
     }
 

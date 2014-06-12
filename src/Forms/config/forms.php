@@ -1,7 +1,6 @@
 <?php
 
 return array(
-    'legacy' => false,
     'field_types' => array(
         'date' => '\Rocket\UI\Forms\Fields\Date',
         'time' => '\Rocket\UI\Forms\Fields\Time',

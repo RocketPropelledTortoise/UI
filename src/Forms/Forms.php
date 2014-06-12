@@ -28,16 +28,6 @@ class Forms
     }
 
     /**
-     * Is this a legacy form ? (Bootstrap 2)
-     *
-     * @return mixed
-     */
-    public static function isLegacy()
-    {
-        return self::$config['legacy'];
-    }
-
-    /**
      * Get the list of field types
      *
      * @return mixed
