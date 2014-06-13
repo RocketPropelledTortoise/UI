@@ -10,8 +10,8 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "kriswallsmith/assetic": "1.1.*",
-        "illuminate/support": "4.1.*"
+        "illuminate/support": ">=4.1.0",
+        "kriswallsmith/assetic": "1.1.*"
     },
     "autoload": {
         "psr-4": { "Rocket\\UI\\Asset\\": "" }
