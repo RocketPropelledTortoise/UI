@@ -612,7 +612,7 @@ class Field
     protected function inputTip()
     {
         if (isset($this->params['tip']) && $this->params['tip'] != '') {
-            $this->input_attributes['title'] = js_escape($this->params['tip']);
+            $this->input_attributes['title'] = json_encode($this->params['tip']);
         }
     }
 

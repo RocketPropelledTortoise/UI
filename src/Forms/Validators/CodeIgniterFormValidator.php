@@ -18,6 +18,10 @@ class CodeIgniterFormValidator implements ValidatorInterface
 
     public function getRules($name)
     {
+        if(!function_exists('CI')) {
+            return [];
+        }
+
         $OBJ = & _get_validation_object();
 
         //TODO :: add a list of available and unavaiable callbacks / validators ...
