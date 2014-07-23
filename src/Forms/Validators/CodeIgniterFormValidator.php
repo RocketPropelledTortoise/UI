@@ -18,7 +18,7 @@ class CodeIgniterFormValidator implements ValidatorInterface
 
     public function getRules($name)
     {
-        if(!function_exists('CI')) {
+        if (!method_exists('Controller', 'get_instance')) {
             return [];
         }
 
