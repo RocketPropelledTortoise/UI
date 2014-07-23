@@ -22,6 +22,13 @@ class ScriptServiceProvider extends ServiceProvider
         $this->loadEvents();
 
         $this->shareJS();
+
+        $this->registerMiddleware();
+    }
+
+    protected function registerMiddleware()
+    {
+        $this->app->middleware('\Rocket\UI\Script\Support\Middleware\ScriptMiddleware');
     }
 
     protected function loadEvents()
