@@ -115,13 +115,24 @@ class Table
             $output .= $this->themeTableHead($has_rows);
         }
 
+        $footer_rows = '';
+
         // Format the table rows:
         if ($has_rows) {
             $output .= "<tbody>\n";
             foreach ($this->rows as $row) {
-                $output .= $this->themeTableRow($row);
+                $rendered = $this->themeTableRow($row);
+                if (array_key_exists('footer', $row) && $row['footer'] == true) {
+                    $footer_rows .= $rendered;
+                } else {
+                    $output .= $rendered;
+                }
             }
             $output .= "</tbody>\n";
+        }
+
+        if ($footer_rows != '') {
+            $output .= "<tfoot>\n$footer_rows</tfoot>\n";
         }
 
         $output .= "</table>\n";
@@ -186,6 +197,7 @@ class Table
 
         // Check if we're dealing with a simple or complex row
         if (isset($row['data'])) {
+            unset($row['footer']);
             foreach ($row as $key => $value) {
                 if ($key == 'data') {
                     $cells = $value;

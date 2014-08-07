@@ -229,6 +229,19 @@ class TableTest extends PHPUnit_Framework_TestCase
                 '</table>'. "\n",
                 [['head1', 'head2'], [['r1c1', 'r1c2'], ['r2c1', 'r2c2']]]
             ),
+            array(
+                '<table class="table table-striped sticky-enabled">' . "\n" .
+                '<thead>'. "\n" .
+                '<tr><th>head1</th><th>head2</th></tr>' . "\n" .
+                '</thead><tbody>'. "\n" .
+                '<tr><td>r1c1</td><td>r1c2</td></tr>' . "\n" .
+				'</tbody>'. "\n" .
+                '<tfoot>'. "\n" .
+                '<tr><td>r2c1</td><td>r2c2</td></tr>'. "\n" .
+                '</tfoot>' . "\n" .                
+                '</table>'. "\n",
+                [['head1', 'head2'], [['r1c1', 'r1c2'], ['footer' => true, 'data' => ['r2c1', 'r2c2']]]]
+            ),
         );
     }
 
