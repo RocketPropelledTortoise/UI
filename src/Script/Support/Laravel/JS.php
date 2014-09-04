@@ -52,4 +52,9 @@ class JS extends \Rocket\UI\Script\JS
 
         return $queue_copy;
     }
+
+    public function __toString()
+    {
+        return "";
+    }
 }
