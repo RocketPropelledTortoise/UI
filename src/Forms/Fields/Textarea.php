@@ -33,6 +33,6 @@ class Textarea extends Field
 
         $attributes = $this->renderAttributes($this->input_attributes);
 
-        $this->result .= "<textarea $attributes>" . form_prep($val, $this->id) . "</textarea>";
+        $this->result .= "<textarea $attributes>" . htmlentities($val, ENT_QUOTES, 'UTF-8', false) . "</textarea>";
     }
 }
