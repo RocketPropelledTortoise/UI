@@ -29,6 +29,7 @@ class Datetime extends Field
         $options_date = json_encode_with_functions(
             [
                 'firstDay' => 1,
+                'format' => 'dd/mm/yyyy',
                 'selectMonths' => true,
                 'selectYears' => true,
                 'onSet' => "function(item) {
@@ -78,11 +79,13 @@ class Datetime extends Field
         $this->result .= '<div class=row><div class=col-xs-8>';
 
         $field_date = array_merge($attr, ['id' => $attr['id'] . '_date', 'name' => $attr['id'] . '_date']);
+        $field_date['value'] = explode(' ', $field_date['value'])[0];
         $this->result .= '<input' . $this->renderAttributes($field_date) . ' />';
 
         $this->result .= '</div><div class=col-xs-4>';
 
         $field_time = array_merge($attr, ['id' => $attr['id'] . '_time', 'name' => $attr['id'] . '_time']);
+        $field_time['value'] = explode(' ', $field_time['value'])[1];
         $this->result .= '<input' . $this->renderAttributes($field_time) . ' />';
 
         $this->result .= '</div></div>';
