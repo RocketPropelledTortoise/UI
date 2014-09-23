@@ -29,7 +29,8 @@ class Date extends Field
     protected function renderScript()
     {
         $options = array(
-            'formatSubmit' => "d/m/yyyy",
+            'formatSubmit' => "dd/mm/yyyy",
+            'format' => "dd/mm/yyyy",
             'firstDay' => 1,
             'selectMonths' => true,
             'selectYears' => true

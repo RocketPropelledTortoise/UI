@@ -61,6 +61,8 @@ class Radio extends Field
     protected function renderInner()
     {
         if (array_key_exists('values', $this->params)) {
+            unset($this->input_attributes['id']);
+
             $this->input_attributes['class'][] = 'form_multiple';
             foreach ($this->params['values'] as $key => $val) {
                 $this->input_attributes['value'] = $key;

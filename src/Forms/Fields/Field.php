@@ -67,7 +67,7 @@ class Field
      * @var array
      */
     protected $span_attributes = array(
-        'class' => array('field-label')
+        'class' => array('field-label', 'control-label')
     );
 
     /**
@@ -319,8 +319,8 @@ class Field
     protected function hasError()
     {
         if ($this->getValidator()->hasError($this->name)) {
-            $this->input_attributes['class'][] = 'error';
-            $this->label_attributes['class'][] = 'error';
+            //$this->input_attributes['class'][] = 'error';
+            $this->label_attributes['class'][] = 'has-error';
         }
     }
 
