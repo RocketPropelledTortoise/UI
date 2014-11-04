@@ -1,4 +1,4 @@
-# Foundation
+# UI for Taxonomies
 
 [![Latest Version](https://img.shields.io/github/release/RocketPropelledTortoise/ui.svg?style=flat-square)](https://github.com/RocketPropelledTortoise/ui/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/rocket/ui/blob/master/LICENSE.md)
@@ -7,19 +7,19 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/RocketPropelledTortoise/UI.svg?style=flat-square)](https://scrutinizer-ci.com/g/rocket/ui)
 [![Total Downloads](https://img.shields.io/packagist/dt/rocket/ui.svg?style=flat-square)](https://packagist.org/packages/rocket/ui)
 
-A basic canvas for web applications, with lightweight Javascript framework, Asset Management and Bootstrap Templates
+An interface to edit Taxonomies, with a few helpers
 
 ## Install
 
 Via Composer
 
 ``` bash
-$ composer require rocket/foundation
+$ composer require rocket/taxonomy-ui
 ```
 
 ## Usage
 
-When you create a Laravel blade template, put `@extends('r_foundation::layout')` at the top, et voilà !
+no code for this one ;)
 
 ## Testing
 

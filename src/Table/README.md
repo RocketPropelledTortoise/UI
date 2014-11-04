@@ -1,4 +1,4 @@
-# Foundation
+# Tables
 
 [![Latest Version](https://img.shields.io/github/release/RocketPropelledTortoise/ui.svg?style=flat-square)](https://github.com/RocketPropelledTortoise/ui/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/rocket/ui/blob/master/LICENSE.md)
@@ -7,19 +7,41 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/RocketPropelledTortoise/UI.svg?style=flat-square)](https://scrutinizer-ci.com/g/rocket/ui)
 [![Total Downloads](https://img.shields.io/packagist/dt/rocket/ui.svg?style=flat-square)](https://packagist.org/packages/rocket/ui)
 
-A basic canvas for web applications, with lightweight Javascript framework, Asset Management and Bootstrap Templates
+This library is a helper to generate HTML tables from an array.
 
 ## Install
 
 Via Composer
 
 ``` bash
-$ composer require rocket/foundation
+$ composer require rocket/table
 ```
 
 ## Usage
 
-When you create a Laravel blade template, put `@extends('r_foundation::layout')` at the top, et voilà !
+``` php
+$heads = ['Title', 'Author'];
+$content = [
+    ['The book I didn\'t write', 'Not Me']
+    ['The book he wrote', 'It was me']
+];
+
+echo Table::quick($heads, $content);
+```
+
+will produce
+
+``` html
+<table class="table table-striped sticky-enabled">
+    <thead>
+        <tr><th>Title</th><th>Author</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>The book I didn't write</td><td>Not Me</td></tr>
+        <tr><td>The book he wrote</td><td>It was me</td></tr>
+    </tbody>
+</table>
+```
 
 ## Testing
 

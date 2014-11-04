@@ -1,77 +1,62 @@
-# Easy Forms
+# Forms, simplified
+
+[![Latest Version](https://img.shields.io/github/release/RocketPropelledTortoise/ui.svg?style=flat-square)](https://github.com/RocketPropelledTortoise/ui/releases)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/rocket/ui/blob/master/LICENSE.md)
+[![Build Status](https://img.shields.io/travis/RocketPropelledTortoise/UI/master.svg?style=flat-square)](https://travis-ci.org/RocketPropelledTortoise/UI)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/RocketPropelledTortoise/UI.svg?style=flat-square)](https://scrutinizer-ci.com/g/rocket/ui/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/RocketPropelledTortoise/UI.svg?style=flat-square)](https://scrutinizer-ci.com/g/rocket/ui)
+[![Total Downloads](https://img.shields.io/packagist/dt/rocket/ui.svg?style=flat-square)](https://packagist.org/packages/rocket/ui)
 
 Wrapper around form creation, also handles putting the value of a sent form, default values, and adding classes for errors.
 
-The fields are created with Bootstrap 3's markup
+The markup is made for Twitter Bootstrap version 3
 
-## Required to work
+## Install
 
-- jQuery for some fields, provided by the `Foundation` and `Asset` packages
+Via Composer
 
-## Integrations
-
-### Laravel
-
-`Illuminate\Support\ServiceProvider\FormsServiceProvider`
-
-### Twig
-
-There is an extension for Twig to allow you to simply create forms with.
-
-```php
-$twig->addExtension(new Rocket\UI\Forms\Support\Twig\Extension());
-``
-
-## Available fields
-
-A lot of fields are available by default, you can also add your own ones
-
-- date - comes with a datepicker (pickadate)
-- time - comes with a datepicker (pickadate)
-- datetime - comes with a datepicker (pickadate)
-- textarea - simple textarea
-- htmlarea - WYSIWYG with tinyeditor
-- text - text field
-- password - password field
-- radio - radio button
-- email - email field
-- submit - submit button
-- autocomplete - autocomplete, works with a jQuery UI autocomplete replacement, supports multiple terms
-- select - select box, supports groups
-- checkbox
-- hidden - hidden field
-- file - file field, with special hack to be able to style the field
-
-__ Only with Laravel 4__
-
-- honeypot - honeypot, works only with Laravel
-- kaptcha - ask for an easy math problem
+``` bash
+$ composer require rocket/forms
+```
 
 ## Usage
 
 ### PHP
 A slightly better syntax is in preparation for PHP and Blde, but is not ready right now
 
-    echo FE('email', t('Adresse E-mail), 'email')->width(6);
-    echo FE('password', t('Mot de passe'), 'password')->width(6);
-    echo FE('remember', t('Se souvenir de moi'), 'checkbox')->width(6);
+``` php
+    echo FE('email', 'Adresse E-mail, 'email')->width(6);
+    echo FE('password', 'Mot de passe', 'password')->width(6);
+    echo FE('remember', 'Se souvenir de moi', 'checkbox')->width(6);
+```
 
 ### Blade
 A slightly better syntax is in preparation for PHP and Blde, but is not ready right now
 
-    {{ FE('email', t('Adresse E-mail), 'email')->width(6) }}
-    {{ FE('password', t('Mot de passe'), 'password')->width(6) }}
-    {{ FE('remember', t('Se souvenir de moi'), 'checkbox')->width(6) }}
+    {{ FE('email', 'Adresse E-mail, 'email')->width(6) }}
+    {{ FE('password', 'Mot de passe', 'password')->width(6) }}
+    {{ FE('remember', 'Se souvenir de moi', 'checkbox')->width(6) }}
 
 ### Twig
 With the twig extension, it is very easy to create form fields with a fluid syntax
 
-    {% form 'email' 'Adresse E-mail'|t 'email' width(6) %}
-    {% form 'password' 'Mot de passe'|t 'password' width(6) %}
-    {% form 'remember' 'Se souvenir de moi'|t 'checkbox' width(6) %}
+    {% form 'email' 'Adresse E-mail' 'email' width(6) %}
+    {% form 'password' 'Mot de passe' 'password' width(6) %}
+    {% form 'remember' 'Se souvenir de moi' 'checkbox' width(6) %}
 
-## `//Todo`
+## Testing
 
-- Finish Documentation
-- Finish binding to Laravel Validator
-- Unit tests
+All the tests live in the [main project](https://github.com/rocket/ui).
+
+## Contributing
+
+Please see [CONTRIBUTING](https://github.com/rocket/ui/blob/master/CONTRIBUTING.md) for details.
+
+## Credits
+
+- [Stéphane Goetz](https://github.com/onigoetz)
+- [All Contributors](https://github.com/RocketPropelledTortoise/:package_name/contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](https://github.com/rocket/ui/blob/master/LICENSE.md) for more information.
