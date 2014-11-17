@@ -72,6 +72,7 @@ class Datetime extends Field
     protected function renderInner()
     {
         $attr = $this->input_attributes;
+        $date = explode(' ', $attr['value']) + [1 => ''];
 
         $field_main = array_merge($attr, ['type' => 'hidden']);
         $this->result .= '<input' . $this->renderAttributes($field_main) . ' />';
@@ -79,13 +80,13 @@ class Datetime extends Field
         $this->result .= '<div class=row><div class=col-xs-8>';
 
         $field_date = array_merge($attr, ['id' => $attr['id'] . '_date', 'name' => $attr['id'] . '_date']);
-        $field_date['value'] = explode(' ', $field_date['value'])[0];
+        $field_date['value'] = $date[0];
         $this->result .= '<input' . $this->renderAttributes($field_date) . ' />';
 
         $this->result .= '</div><div class=col-xs-4>';
 
         $field_time = array_merge($attr, ['id' => $attr['id'] . '_time', 'name' => $attr['id'] . '_time']);
-        $field_time['value'] = explode(' ', $field_time['value'])[1];
+        $field_time['value'] = $date[1];
         $this->result .= '<input' . $this->renderAttributes($field_time) . ' />';
 
         $this->result .= '</div></div>';
