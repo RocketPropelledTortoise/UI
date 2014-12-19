@@ -216,6 +216,7 @@ class Field
             'margins' => 12, //width in px
             'data_attributes' => array(),
             'class' => '',
+            'multifield' => false,
             'maxlength' => array(
                 'slider' => true
             ),
@@ -468,7 +469,8 @@ class Field
         $this->inputTip();
 
         if ($this->show_label) {
-            $this->result .= "<label for='{$this->id}' " . $this->renderAttributes($this->label_attributes) . '>';
+            $tag = $this->params['multifield'] ? 'div' : 'label';
+            $this->result .= "<$tag " . $this->renderAttributes($this->label_attributes) . '>';
         }
 
         if ($this->params['label_position'] == 'before') {
@@ -486,7 +488,7 @@ class Field
         }
 
         if ($this->show_label) {
-            $this->result .= '</label>';
+            $this->result .= "</$tag>";
         }
 
         return $this->result;
@@ -594,6 +596,11 @@ class Field
         if (array_key_exists('placeholder', $this->params)) {
             $this->input_attributes['placeholder'] = $this->params['placeholder'];
         }
+    }
+
+    protected function labelAttributes()
+    {
+        $this->label_attributes['for'] = $this->id;
     }
 
     /**
