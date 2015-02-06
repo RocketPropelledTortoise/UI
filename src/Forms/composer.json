@@ -10,8 +10,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "rocket/script": "~1.0.0",
-        "msurguy/honeypot": "dev-master"
+        "rocket/script": "~1.0.0"
     },
     "suggest": {
         "illuminate/support": "To use with Laravel",
