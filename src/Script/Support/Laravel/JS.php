@@ -6,8 +6,8 @@
 
 namespace Rocket\UI\Script\Support\Laravel;
 
-use Illuminate\Support\Contracts\ArrayableInterface;
-use Illuminate\Support\Contracts\JsonableInterface;
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
 
 /**
  * Javascript class
@@ -40,11 +40,11 @@ class JS extends \Rocket\UI\Script\JS
             $queue_copy,
             function (&$content) {
 
-                if ($content instanceof ArrayableInterface) {
+                if ($content instanceof Arrayable) {
                     $content = $content->toArray();
                 }
 
-                if ($content instanceof JsonableInterface) {
+                if ($content instanceof Jsonable) {
                     $content = $content->toJson();
                 }
             }

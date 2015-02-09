@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Contracts\ArrayableInterface;
-use Illuminate\Support\Contracts\JsonableInterface;
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
 
 class LaravelJSTest extends PHPUnit_Framework_TestCase
 {
@@ -60,7 +60,7 @@ class LaravelJSTest extends PHPUnit_Framework_TestCase
     }
 }
 
-class JsonableStub implements JsonableInterface
+class JsonableStub implements Jsonable
 {
     public function toJson($options = 0)
     {
@@ -68,7 +68,7 @@ class JsonableStub implements JsonableInterface
     }
 }
 
-class ArrayableStub implements ArrayableInterface
+class ArrayableStub implements Arrayable
 {
     public function toArray()
     {
