@@ -1,18 +1,10 @@
-<?php
-/**
- * Created by IntelliJ IDEA.
- * User: onigoetz
- * Date: 01.04.14
- * Time: 23:13
- */
-
-namespace Rocket\UI\Assets\Assetic;
+<?php namespace Rocket\UI\Assets\Assetic;
 
 use Assetic\Asset\AssetCollection;
+use Assetic\Asset\AssetInterface;
 use Assetic\Filter\FilterInterface;
 use Rocket\UI\Assets\Assetic\Asset\AssetReference;
 use Rocket\UI\Assets\Assetic\Asset\WeightedAsset;
-
 
 class WeightedAssetCollection extends AssetCollection
 {
@@ -31,6 +23,13 @@ class WeightedAssetCollection extends AssetCollection
         $this->flattenAndOrderAssets();
 
         return parent::dump($additionalFilter);
+    }
+
+    public function add(AssetInterface $asset)
+    {
+        parent::add($asset);
+
+        $this->flattened = false;
     }
 
     protected function flattenAndOrderAssets()

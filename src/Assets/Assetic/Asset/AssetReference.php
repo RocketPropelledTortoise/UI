@@ -1,12 +1,4 @@
-<?php
-/**
- * Created by IntelliJ IDEA.
- * User: onigoetz
- * Date: 25.05.14
- * Time: 17:40
- */
-
-namespace Rocket\UI\Assets\Assetic\Asset;
+<?php namespace Rocket\UI\Assets\Assetic\Asset;
 
 use Assetic\AssetManager;
 use Assetic\Asset\AssetInterface;
@@ -119,7 +111,6 @@ class AssetReference implements AssetInterface
        return $this->am->get($this->name);
     }
 
-    // private
     private function callAsset($method, $arguments = array())
     {
         return call_user_func_array(array($this->getAsset(), $method), $arguments);
