@@ -1,18 +1,11 @@
-<?php
-/**
- * Add service providers
- */
-
-namespace Rocket\UI\Script\Support\Laravel;
-
-use Illuminate\Support\ServiceProvider;
+<?php namespace Rocket\UI\Script\Support\Laravel;
 
 /**
  * Register special service providers
  *
  * @package Provider
  */
-class ScriptServiceProvider extends ServiceProvider
+class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
      * {@inheritdoc}

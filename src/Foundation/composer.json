@@ -14,6 +14,7 @@
         "rocket/assets": "~1.0.0"
     },
     "autoload": {
+        "files": ["functions.php"],
         "psr-4": {"Rocket\\UI\\Foundation\\": ""}
     },
     "extra": {

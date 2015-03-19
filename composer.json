@@ -28,6 +28,7 @@
     },
     "autoload": {
         "files": [
+            "src/Foundation/functions.php",
             "src/Script/functions.php",
 			"src/Forms/functions.php"
         ],

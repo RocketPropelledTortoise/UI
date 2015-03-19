@@ -1,24 +1,15 @@
-<?php
-/**
- * Add service providers
- */
-
-namespace Rocket\UI\Foundation;
+<?php namespace Rocket\UI\Foundation\Support\Laravel5;
 
 /**
  * Register special service providers
  */
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
-    protected function loadFunctions()
-    {
-        include __DIR__ . '/functions.php';
-    }
 
     //TODO :: find a cleaner way to load events for all packages
     protected function loadEvents()
     {
-        include __DIR__ . '/events.php';
+        include __DIR__ . '/../../events.php';
     }
 
     protected function registerViewNamespace()
@@ -50,8 +41,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
-        $this->loadFunctions();
-
         $this->loadEvents();
     }
 }

@@ -1,6 +1,4 @@
-<?php
-
-namespace Rocket\UI\Assets;
+<?php namespace Rocket\UI\Assets\Support\Laravel5;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {

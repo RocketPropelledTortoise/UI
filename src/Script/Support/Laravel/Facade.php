@@ -1,17 +1,9 @@
-<?php
+<?php namespace Rocket\UI\Script\Support\Laravel;
 
 /**
  * Javascript facade
  */
-
-namespace Rocket\UI\Script\Support\Laravel;
-
-use Illuminate\Support\Facades\Facade;
-
-/**
- * Javascript facade
- */
-class ScriptFacade extends Facade
+class Facade extends \Illuminate\Support\Facades\Facade
 {
     /**
      * Get the registered name of the component.
