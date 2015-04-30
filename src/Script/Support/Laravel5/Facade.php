@@ -1,4 +1,4 @@
-<?php namespace Rocket\UI\Script\Support\Laravel;
+<?php namespace Rocket\UI\Script\Support\Laravel5;
 
 /**
  * Javascript facade

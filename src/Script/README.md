@@ -18,6 +18,16 @@ Via Composer
 $ composer require rocket/script
 ```
 
+### Service Provider
+
+`\Rocket\UI\Script\Support\Laravel5\ServiceProvider`
+
+### Middleware
+
+(App\Http\Kernel.php)
+
+`\Rocket\UI\Script\Support\Middleware\ScriptMiddleware`
+
 ## Usage
 
 ``` php
@@ -31,9 +41,9 @@ Will produce
 <script>
 $(function() {
     console.log("you're a wizard, Harry!");
-    
+
     //---
-    
+
     console.log("Dobby is freeeee!");
 });
 </script>

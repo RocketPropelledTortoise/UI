@@ -1,4 +1,4 @@
-<?php namespace Rocket\UI\Script\Support\Laravel;
+<?php namespace Rocket\UI\Script\Support\Laravel5;
 
 /**
  * Register special service providers
@@ -15,13 +15,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->loadEvents();
 
         $this->shareJS();
-
-        $this->registerMiddleware();
-    }
-
-    protected function registerMiddleware()
-    {
-        $this->app->middleware('\Rocket\UI\Script\Support\Middleware\ScriptMiddleware');
     }
 
     protected function loadEvents()

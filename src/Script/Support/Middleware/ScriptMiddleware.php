@@ -7,16 +7,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Rocket\UI\Script\Support\Laravel\ScriptFacade as JS;
 
-class ScriptMiddleware implements HttpKernelInterface {
+class ScriptMiddleware {
 
-    protected $app;
-
-    public function __construct(HttpKernelInterface $app, array $options = []) {
-        $this->app = $app;
-    }
-
-    public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true) {
-        $response = $this->app->handle($request, $type, $catch);
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next) {
+        $response = $next($request);
 
         if (!$response->headers->has('content-type') ||
             strpos($response->headers->get('content-type'), 'html') !== false) {

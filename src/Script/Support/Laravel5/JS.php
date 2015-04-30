@@ -1,10 +1,4 @@
-<?php
-
-/**
- * Javascript class
- */
-
-namespace Rocket\UI\Script\Support\Laravel;
+<?php namespace Rocket\UI\Script\Support\Laravel5;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
