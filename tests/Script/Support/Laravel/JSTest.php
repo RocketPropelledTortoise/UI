@@ -17,7 +17,7 @@ class LaravelJSTest extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->js = new \Rocket\UI\Script\Support\Laravel\JS(array());
+        $this->js = new \Rocket\UI\Script\Support\Laravel5\JS(array());
     }
 
     public function settingsData()
