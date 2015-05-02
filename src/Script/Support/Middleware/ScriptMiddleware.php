@@ -16,7 +16,7 @@ class ScriptMiddleware {
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next) {
+    public function handle($request, \Closure $next) {
         $response = $next($request);
 
         if (!$response->headers->has('content-type') ||
