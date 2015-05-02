@@ -30,7 +30,7 @@
 
   @yield('script_header')
 </head>
-<body class="{{ body_classes() }} @yield('body_class')">
+<body class="{{ rocket_body_classes() }} @yield('body_class')">
     @yield('body')
 
     @yield('script_footer')
