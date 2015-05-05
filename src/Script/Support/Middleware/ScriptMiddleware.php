@@ -5,7 +5,7 @@ namespace Rocket\UI\Script\Support\Middleware;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Rocket\UI\Script\Support\Laravel\ScriptFacade as JS;
+use Rocket\UI\Script\Support\Laravel5\Facade as JS;
 
 class ScriptMiddleware {
 
