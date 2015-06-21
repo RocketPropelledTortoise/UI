@@ -125,7 +125,7 @@ class Taxonomy
         $terms = array();
         foreach ($tids as $tid) {
             $term = T::getTerm($tid);
-            $terms[$term['term_id']] = ucfirst($term['text']);
+            $terms[$term['term_id']] = ucfirst($term['title']);
         }
 
         //sort
