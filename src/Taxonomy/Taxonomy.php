@@ -1,19 +1,10 @@
-<?php
-/**
- * Created by IntelliJ IDEA.
- * User: onigoetz
- * Date: 02.03.14
- * Time: 21:53
- */
+<?php namespace Rocket\UI\Taxonomy;
 
-namespace Rocket\UI\Taxonomy;
-
-
-use Rocket\Taxonomy\Facade as T;
 use Rocket\Taxonomy\Model\Hierarchy;
 use Rocket\Taxonomy\Model\TermContainer;
 use Rocket\Taxonomy\Model\TermData;
-use Rocket\Translation\I18NFacade as I18N;
+use Rocket\Taxonomy\Support\Laravel5\Facade as T;
+use\Rocket\Translation\Support\Laravel5\Facade as I18N;
 use Rocket\Utilities\ParentChildTree;
 
 class Taxonomy
