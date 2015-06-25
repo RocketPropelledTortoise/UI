@@ -4,7 +4,7 @@ use Rocket\Taxonomy\Model\Hierarchy;
 use Rocket\Taxonomy\Model\TermContainer;
 use Rocket\Taxonomy\Model\TermData;
 use Rocket\Taxonomy\Support\Laravel5\Facade as T;
-use\Rocket\Translation\Support\Laravel5\Facade as I18N;
+use Rocket\Translation\Support\Laravel5\Facade as I18N;
 use Rocket\Utilities\ParentChildTree;
 
 class Taxonomy

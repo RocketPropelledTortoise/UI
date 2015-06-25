@@ -6,8 +6,8 @@
 
 namespace Rocket\UI\Taxonomy;
 
-use \Rocket\Taxonomy\Facade as T;
-use \I18N;
+use Rocket\Taxonomy\Support\Laravel5\Facade as T;
+use Rocket\Translation\Support\Laravel5\Facade as I18N;
 
 /**
  * Class TreeTable
@@ -30,13 +30,13 @@ class TreeTable
             $heads = array();
             if (T::isTranslatable($vid)) {
                 foreach (I18N::languages() as $lang) {
-                    $heads[] = __($lang['name'], array(), 'languages');
+                    $heads[] = t($lang['name'], array(), 'languages');
                 }
             } else {
-                $heads[] = __('Mot');
+                $heads[] = t('Mot', [], 'rocket/taxonomy');
             }
-            $heads[] = __('ID');
-            $heads[] = __('Action');
+            $heads[] = t('ID', [], 'rocket/taxonomy');
+            $heads[] = t('Action', [], 'rocket/taxonomy');
         }
 
         //TODO :: externalize table
