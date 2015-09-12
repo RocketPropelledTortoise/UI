@@ -317,10 +317,7 @@ APP.ajax = {
         var i;
         for ( i in data ){
             if (data.hasOwnProperty(i)){
-                noty({
-                    'text': data[i].mess,
-                    'type':data[i].type
-                });
+                noty(data[i]);
             }
         }
     },
