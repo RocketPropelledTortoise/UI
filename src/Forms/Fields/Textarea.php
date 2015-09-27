@@ -1,9 +1,9 @@
 <?php
 namespace Rocket\UI\Forms\Fields;
 
-    /**
-     * Manage textarea
-     */
+/**
+ * Manage textarea
+ */
 
 /**
  * Creates a Textarea with Form_element
@@ -33,6 +33,6 @@ class Textarea extends Field
 
         $attributes = $this->renderAttributes($this->input_attributes);
 
-        $this->result .= "<textarea $attributes>" . htmlentities($val, ENT_QUOTES, 'UTF-8', false) . "</textarea>";
+        $this->result .= "<textarea $attributes>" . htmlentities($val, ENT_QUOTES, 'UTF-8', false) . '</textarea>';
     }
 }

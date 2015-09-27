@@ -1,10 +1,9 @@
 <?php
 namespace Rocket\UI\Forms\Fields;
 
-    /**
-     * Manage select fields
-     */
-
+/**
+ * Manage select fields
+ */
 
 /**
  * Adds a select box
@@ -13,7 +12,6 @@ namespace Rocket\UI\Forms\Fields;
  */
 class Select extends Field
 {
-
     /**
      * Adds attributes to the field
      */
@@ -39,14 +37,14 @@ class Select extends Field
         unset($this->input_attributes['value']);
 
         if (!is_array($selected)) {
-            $selected = array($selected);
+            $selected = [$selected];
         }
 
         // If no selected state was submitted we will attempt to set it automatically
         if (count($selected) === 0) {
             // If the form name appears in the $_POST array we have a winner!
             if (\Request::has($this->name)) {
-                $selected = array(\Request::get($this->name));
+                $selected = [\Request::get($this->name)];
             }
         }
 
@@ -54,10 +52,10 @@ class Select extends Field
             $this->input_attributes['multiple'] = 'multiple';
         }
 
-        $form = '<select ' . $this->renderAttributes($this->input_attributes) . ">";
+        $form = '<select ' . $this->renderAttributes($this->input_attributes) . '>';
 
         foreach ($options as $key => $val) {
-            $key = (string)$key;
+            $key = (string) $key;
 
             if (is_array($val) && !empty($val)) {
                 $form .= '<optgroup label="' . $key . '">';

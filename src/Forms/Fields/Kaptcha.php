@@ -1,11 +1,11 @@
 <?php
 namespace Rocket\UI\Forms\Fields;
 
-    /**
-     * Captcha form field
-     *
-     * @author Stéphane Goetz
-     */
+/**
+ * Captcha form field
+ *
+ * @author Stéphane Goetz
+ */
 
 /**
  * A Math Captcha Library that displays a number captcha similar to the drupal captcha.
@@ -34,41 +34,40 @@ namespace Rocket\UI\Forms\Fields;
  * name and id set to kaptcha_answer.
  *
  * The CSS is you bit!
- *
  */
 class Kaptcha extends Field
 {
     protected function getDefaults()
     {
         return parent::getDefaults() + [
-            'kaptcha' => array(
+            'kaptcha' => [
                 'tip' => t(
                     'Resolvez ce calcul et entrez le resultat. Par exemple 1+3 = 4.' .
                     'Il s\'agit de définir que vous êtes bien humain et pour éviter les spams'
                 ),
                 'title' => 'Calcul : !first + !second =',
-                'hidden_field' => 'kaptcha_answer'
-            ),
+                'hidden_field' => 'kaptcha_answer',
+            ],
         ];
     }
 
     protected $kaptcha;
 
-    public function __construct($name, $data = array())
+    public function __construct($name, $data = [])
     {
         parent::__construct($name, $data);
 
-        $this->kaptcha = array(
+        $this->kaptcha = [
             'first' => rand(1, 10),
             'second' => rand(1, 10),
-        );
+        ];
 
         $this->kaptcha['answer'] = \Crypt::encrypt($this->kaptcha['first'] + $this->kaptcha['second']);
 
         $this->params['tip'] = $this->params['kaptcha']['tip'];
         $this->params['title'] = t(
             $this->params['kaptcha']['title'],
-            array('!first' => $this->kaptcha['first'], '!second' => $this->kaptcha['second'])
+            ['!first' => $this->kaptcha['first'], '!second' => $this->kaptcha['second']]
         );
     }
 
@@ -86,7 +85,7 @@ class Kaptcha extends Field
      * Function that validates the user answer against the encrypted answer
      * @param  string $kaptcha
      * @param  string $answer
-     * @return boolean
+     * @return bool
      */
     public static function validate_kaptcha($kaptcha = null, $answer = null)
     {

@@ -1,9 +1,9 @@
 <?php
 namespace Rocket\UI\Forms\Fields;
 
-    /**
-     * Manage checkboxes
-     */
+/**
+ * Manage checkboxes
+ */
 
 /**
  * Adds a checkbox
@@ -15,7 +15,7 @@ class Checkbox extends Field
     /**
      * Override the constructor for some options
      */
-    public function __construct($id, $data = array())
+    public function __construct($id, $data = [])
     {
         $this->type = 'checkbox';
 
@@ -34,7 +34,7 @@ class Checkbox extends Field
         $this->input_attributes['id'] = $this->id;
         $this->input_attributes['name'] = $this->name;
         $this->input_attributes['type'] = 'checkbox';
-        $this->input_attributes['class'] = array('checkbox'); //removes elm
+        $this->input_attributes['class'] = ['checkbox']; //removes elm
 
         $this->input_attributes['value'] = $this->params['check_value'];
 

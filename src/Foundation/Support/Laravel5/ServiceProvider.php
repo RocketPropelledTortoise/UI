@@ -5,7 +5,6 @@
  */
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
-
     //TODO :: find a cleaner way to load events for all packages
     protected function loadEvents()
     {

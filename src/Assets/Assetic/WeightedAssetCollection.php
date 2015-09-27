@@ -69,10 +69,11 @@ class WeightedAssetCollection extends AssetCollection
             foreach ($current->all() as $leaf) {
                 $this->flatten($leaf);
             }
+
             return;
         }
 
-        $weight = ($current instanceof WeightedAsset)? $current->getWeight() : 0;
+        $weight = ($current instanceof WeightedAsset) ? $current->getWeight() : 0;
         $this->orderable[$weight][] = $current;
     }
 }

@@ -1,9 +1,9 @@
 <?php
 namespace Rocket\UI\Forms\Fields;
 
-    /**
-     * Manage submit field
-     */
+/**
+ * Manage submit field
+ */
 
 /**
  * Submit field
@@ -18,7 +18,7 @@ class Submit extends Field
      * @param string $id
      * @param array $data
      */
-    public function __construct($id, $data = array())
+    public function __construct($id, $data = [])
     {
         $this->type = 'submit';
 
@@ -30,9 +30,9 @@ class Submit extends Field
      */
     protected function classes()
     {
-        $this->label_attributes['class'] = array('columns');
+        $this->label_attributes['class'] = ['columns'];
         $this->label_attributes['style']['float'] = 'left';
-        $this->input_attributes['class'] = array('btn');
+        $this->input_attributes['class'] = ['btn'];
         parent::classes();
     }
 

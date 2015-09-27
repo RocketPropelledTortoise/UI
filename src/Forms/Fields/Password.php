@@ -17,7 +17,7 @@ class Password extends Field
      * @param string $id
      * @param array $data
      */
-    public function __construct($id, $data = array())
+    public function __construct($id, $data = [])
     {
         $this->type = 'password';
 

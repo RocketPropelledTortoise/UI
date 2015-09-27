@@ -2,15 +2,15 @@
 
 use Assetic\Asset\FileAsset;
 
-class WeightedAsset extends FileAsset {
-
+class WeightedAsset extends FileAsset
+{
     /**
      * @var int
      */
     protected $weight = 0;
 
     /**
-     * @return integer
+     * @return int
      */
     public function getWeight()
     {
@@ -18,7 +18,7 @@ class WeightedAsset extends FileAsset {
     }
 
     /**
-     * @param integer $weight
+     * @param int $weight
      * @return $this
      */
     public function setWeight($weight)

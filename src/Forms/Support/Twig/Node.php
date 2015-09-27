@@ -2,8 +2,8 @@
 
 namespace Rocket\UI\Forms\Support\Twig;
 
-use Twig_Node;
 use Twig_Compiler;
+use Twig_Node;
 
 /**
  * Form extension for twig
@@ -33,12 +33,12 @@ class Node extends Twig_Node
     /**
      * {@inheritdoc}
      */
-    public function __construct(array $parameters = array(), array $methods = array(), $lineno = 0, $tag = null)
+    public function __construct(array $parameters = [], array $methods = [], $lineno = 0, $tag = null)
     {
         $this->_parameters = $parameters;
         $this->_methods = $methods;
 
-        parent::__construct(array(new Twig_Node()), array(), $lineno, $tag);
+        parent::__construct([new Twig_Node()], [], $lineno, $tag);
     }
 
     /**
@@ -72,7 +72,6 @@ class Node extends Twig_Node
                 $first = true;
 
                 foreach ($parameters as $param) {
-
                     if ($first) {
                         $first = false;
                     } else {

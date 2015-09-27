@@ -8,13 +8,13 @@ class JSTest extends PHPUnit_Framework_TestCase
     }
 
     public static $BEGIN = "<script type=\"text/javascript\">var APP = APP || {'settings': {}, 'behaviors':{}, 'locale':{}, 'utilities':{}};";
-    public static $END = "</script>";
+    public static $END = '</script>';
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->js = new \Rocket\UI\Script\JS(array());
+        $this->js = new \Rocket\UI\Script\JS([]);
     }
 
     public function testFile()
@@ -27,18 +27,18 @@ class JSTest extends PHPUnit_Framework_TestCase
     public function settingsData()
     {
         $arrayable = new \stdClass();
-        $arrayable->name = "application_name";
+        $arrayable->name = 'application_name';
 
-        return array(
-            array(
+        return [
+            [
                 '{"website":"www.onigoetz.ch"}',
-                array('website' => 'www.onigoetz.ch')
-            ),
-            array(
+                ['website' => 'www.onigoetz.ch'],
+            ],
+            [
                 '{"application":{"name":"application_name"}}',
-                array('application' => $arrayable)
-            )
-        );
+                ['application' => $arrayable],
+            ],
+        ];
     }
 
     /**
@@ -56,7 +56,7 @@ class JSTest extends PHPUnit_Framework_TestCase
 
     public function testEmptySettings()
     {
-        $this->js->setting(array());
+        $this->js->setting([]);
         $this->assertJSRender('');
     }
 
