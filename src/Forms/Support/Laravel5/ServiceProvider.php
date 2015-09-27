@@ -25,11 +25,5 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
                 return $this->app->make('js');
             }
         );
-
-        Field::setValidatorResolver(
-            function () {
-                return new CodeIgniterFormValidator();
-            }
-        );
     }
 }

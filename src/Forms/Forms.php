@@ -1,12 +1,8 @@
-<?php
-/**
- * Created by IntelliJ IDEA.
- * User: onigoetz
- * Date: 03.02.14
- * Time: 21:16
- */
+<?php namespace Rocket\UI\Forms;
 
-namespace Rocket\UI\Forms;
+use Collective\Html\FormFacade as Form;
+use Illuminate\Support\Facades\Log;
+use Rocket\UI\Forms\ValidatorAdapters\ValidatorInterface;
 
 /**
  * Class Forms
@@ -36,6 +32,13 @@ class Forms
      */
     public static $config;
 
+    public static $currentValidator;
+
+    public static $adapters = [
+        \Rocket\UI\Forms\ValidatorAdapters\LaravelValidator::class,
+        \Rocket\UI\Forms\ValidatorAdapters\CodeIgniterFormValidator::class
+    ];
+
     /**
      * Set the current configuration
      *
@@ -44,6 +47,43 @@ class Forms
     public static function setConfig($config)
     {
         self::$config = $config;
+    }
+
+    /**
+     * @param Object $validator
+     * @return bool
+     */
+    public static function setFormValidator($validator)
+    {
+        foreach (self::$adapters as $class) {
+            if ($class::supports($validator)) {
+                self::$currentValidator = new $class($validator);
+                return true;
+            }
+        }
+
+        throw new \RuntimeException("impossible to find a form adapter for " . get_class($validator));
+    }
+
+    public static function getFormValidator()
+    {
+        if (!self::$currentValidator) {
+            Log::debug("You have no form validator defined");
+        }
+
+        return self::$currentValidator;
+    }
+
+    /**
+     * @param string $adapter
+     */
+    public static function addFormValidatorAdapter($adapter)
+    {
+        if (!is_subclass_of($adapter, ValidatorInterface::class)) {
+            throw new \RuntimeException("$adapter doesn't implement ValidatorInterface");
+        }
+
+        self::$adapters[] = $adapter;
     }
 
     /**

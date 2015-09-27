@@ -9,6 +9,7 @@ namespace Rocket\UI\Forms\Fields;
  * Submit field
  *
  * @author Stéphane Goetz
+ * @deprecated
  */
 class Submit extends Field
 {

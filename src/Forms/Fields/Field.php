@@ -1,12 +1,7 @@
 <?php
 namespace Rocket\UI\Forms\Fields;
 
-    /**
-     * Form field manager
-     *
-     * @author Stéphane Goetz
-     */
-
+use Rocket\UI\Forms\Forms;
 
 /**
  * Creates a form field
@@ -118,16 +113,6 @@ class Field
     protected static $js_resolver;
 
     /**
-     * @var \Rocket\UI\Forms\Validators\ValidatorInterface
-     */
-    protected static $validator;
-
-    /**
-     * @var callable
-     */
-    protected static $validator_resolver;
-
-    /**
      * Initializes the field
      * @param string $name
      * @param array $data
@@ -136,10 +121,17 @@ class Field
     {
         $this->name = $name;
 
-        //valeurs par défaut
-        $default = $this->getDefaults() + ['value' => set_value($name), 'required' => form_field_required($name)];
+        $required = false;
+        $value = "";
+        if ($validator = $this->getValidator()) {
+            $required = $validator->isRequired($name);
+            $value = $validator->getValue($name, array_key_exists('default', $data)? $data['default'] : "");
+        }
 
-        //Get the new values
+        // Default configuration
+        $default = $this->getDefaults() + ['value' => $value, 'required' => $required];
+
+        // Final configuration
         $this->params = array_replace_recursive($default, $data);
     }
 
@@ -171,30 +163,14 @@ class Field
     }
 
     /**
-     * Set the Form Validator instance callback
-     *
-     * @param $callable callable
-     */
-    public static function setValidatorResolver($callable)
-    {
-        self::$validator_resolver = $callable;
-    }
-
-    /**
      * Get the Javascript queueing instance
      *
-     * @return \Rocket\UI\Forms\Validators\ValidatorInterface
+     * @return \Rocket\UI\Forms\ValidatorAdapters\ValidatorInterface
      * @throws \Exception
      */
     protected function getValidator()
     {
-        if (null === self::$validator) {
-            if (!self::$validator = call_user_func(self::$validator_resolver)) {
-                throw new \Exception('No javascript queueing instance can be found');
-            }
-        }
-
-        return self::$validator;
+        return Forms::getFormValidator();
     }
 
     /**
@@ -319,8 +295,9 @@ class Field
      */
     protected function hasError()
     {
-        if ($this->getValidator()->hasError($this->name)) {
-            //$this->input_attributes['class'][] = 'error';
+        $validator = $this->getValidator();
+
+        if ($validator && $validator->hasError($this->name)) {
             $this->label_attributes['class'][] = 'has-error';
         }
     }
@@ -488,8 +465,9 @@ class Field
             $this->renderTitle();
         }
 
-        if (form_field_error($this->name)) {
-            $this->result .= $this->template('HELP_BLOCK', ['!help' => form_field_get_error($this->name)]);
+        $validator = $this->getValidator();
+        if ($validator && $validator->hasError($this->name)) {
+            $this->result .= $this->template('HELP_BLOCK', ['!help' => $this->formatErrors($validator->getErrors($this->name))]);
         }
 
         if ($this->show_label) {
@@ -497,6 +475,18 @@ class Field
         }
 
         return $this->result;
+    }
+
+    protected function formatErrors($errors) {
+        if (is_string($errors)) {
+            return $errors;
+        }
+
+        if (count($errors) == 1) {
+            return $errors[0];
+        }
+
+        return '<ul><li>' . implode('</li><li>', $errors) . '</li></ul>';
     }
 
     /**
