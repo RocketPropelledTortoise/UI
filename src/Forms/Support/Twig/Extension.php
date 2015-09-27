@@ -13,7 +13,7 @@ use Twig_SimpleFunction;
 class Extension extends Twig_Extension
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getFunctions()
     {
@@ -29,9 +29,9 @@ class Extension extends Twig_Extension
      */
     public function getTokenParsers()
     {
-        return array(
+        return [
             new TokenParser(),
-        );
+        ];
     }
 
     /**

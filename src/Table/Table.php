@@ -2,7 +2,6 @@
 /**
  * Generate a table
  */
-
 namespace Rocket\UI\Table;
 
 class Table
@@ -43,7 +42,7 @@ class Table
      * @param array $attributes
      * @param string|null $caption
      */
-    public function __construct($header = null, $rows = null, $attributes = array(), $caption = null)
+    public function __construct($header = null, $rows = null, $attributes = [], $caption = null)
     {
         $this->setHeader($header);
         $this->setRows($rows);
@@ -98,7 +97,6 @@ class Table
      */
     public function render()
     {
-
         $has_header = count($this->header);
         $has_rows = count($this->rows);
 
@@ -136,6 +134,7 @@ class Table
         }
 
         $output .= "</table>\n";
+
         return $output;
     }
 
@@ -146,7 +145,7 @@ class Table
      */
     private function prepareTableClasses($has_header)
     {
-        $default_classes = array('table');
+        $default_classes = ['table'];
 
         if (!empty($this->attributes['class'])) {
             $items = explode(' ', $this->attributes['class']);
@@ -154,7 +153,7 @@ class Table
         }
 
         //if no class starts with "table-" will add striped tables
-        if (empty($this->attributes['class']) || !$this->is_in_array("/^table-/", $default_classes)) {
+        if (empty($this->attributes['class']) || !$this->is_in_array('/^table-/', $default_classes)) {
             $default_classes[] = 'table-striped';
         }
 
@@ -190,7 +189,7 @@ class Table
      */
     private function themeTableRow($row, $header = false)
     {
-        $attributes = array();
+        $attributes = [];
         $row_content = '';
 
         $cells = $row;
@@ -289,9 +288,10 @@ class Table
      * @param $caption string       A localized string to use for the <caption> tag.
      * @return string               An HTML string representing the table.
      */
-    public static function quick($header, $rows, $attributes = array(), $caption = null)
+    public static function quick($header, $rows, $attributes = [], $caption = null)
     {
-        $table = new Table($header, $rows, $attributes, $caption);
+        $table = new self($header, $rows, $attributes, $caption);
+
         return $table->render();
     }
 
@@ -302,9 +302,9 @@ class Table
      * @param array $subjectArray
      * @return bool
      */
-    protected function is_in_array($pattern, array $subjectArray, &$allMatches = array(), $flags = null, $offset = null)
+    protected function is_in_array($pattern, array $subjectArray, &$allMatches = [], $flags = null, $offset = null)
     {
-        foreach($subjectArray as $subject) {
+        foreach ($subjectArray as $subject) {
             if (preg_match($pattern, $subject, $matches, $flags, $offset)) {
                 return true;
             }
@@ -323,12 +323,12 @@ class Table
      */
     protected function attributes($attributes)
     {
-        $html = array();
+        $html = [];
 
         // For numeric keys we will assume that the key and the value are the same
         // as this will convert HTML attributes such as "required" to a correct
         // form like required="required" instead of using incorrect numerics.
-        foreach ((array)$attributes as $key => $value) {
+        foreach ((array) $attributes as $key => $value) {
             //if (is_numeric($key)) { //should not happen
             //    $key = $value;
             //}

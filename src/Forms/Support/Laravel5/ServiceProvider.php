@@ -2,7 +2,6 @@
 
 use Rocket\UI\Forms\Fields\Field;
 use Rocket\UI\Forms\Forms;
-use Rocket\UI\Forms\Validators\CodeIgniterFormValidator;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {

@@ -2,8 +2,6 @@
 
 /**
  * Register special service providers
- *
- * @package Provider
  */
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
@@ -28,6 +26,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             function () {
                 $js = new JS([]);
                 $this->app['events']->fire('js.init', [$js]);
+
                 return $js;
             }
         );

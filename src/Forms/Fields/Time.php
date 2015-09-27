@@ -1,9 +1,9 @@
 <?php
 namespace Rocket\UI\Forms\Fields;
 
-    /**
-     * Manage date fields
-     */
+/**
+ * Manage date fields
+ */
 
 /**
  * Creates a date field with Form_element
@@ -28,7 +28,7 @@ class Time extends Field
      */
     protected function renderScript()
     {
-        $options = array('format' => "H:i");
+        $options = ['format' => 'H:i'];
 
         if (array_key_exists('options', $this->params)) {
             $options = array_merge($this->params['options'], $options);

@@ -2,10 +2,10 @@
 
 namespace Rocket\UI\Forms\Support\Twig;
 
-use Twig_TokenParser;
-use Twig_Token;
 use Twig_Error_Syntax;
 use Twig_NodeInterface;
+use Twig_Token;
+use Twig_TokenParser;
 
 /**
  * Form extension for twig
@@ -18,13 +18,12 @@ use Twig_NodeInterface;
  */
 class TokenParser extends Twig_TokenParser
 {
-
     /**
      * form valid methods
      *
      * @var array
      */
-    private $valid_methods = array(
+    private $valid_methods = [
         'width',
         'height',
 
@@ -41,15 +40,15 @@ class TokenParser extends Twig_TokenParser
         'inline',
         'data',
         'options',
-        'class'
-    );
+        'class',
+    ];
 
     /**
      * Parses a token and returns a node.
      *
      * @param  Twig_Token                                   $token
-     * @return Node|Twig_NodeInterface
      * @throws Twig_Error_Syntax
+     * @return Node|Twig_NodeInterface
      */
     public function parse(Twig_Token $token)
     {
@@ -57,12 +56,12 @@ class TokenParser extends Twig_TokenParser
 
         $parameters_finished = false;
 
-        $parameters = array();
-        $methods = array();
+        $parameters = [];
+        $methods = [];
 
         $method_name = '';
         $method_level = 0;
-        $current_parameters = array();
+        $current_parameters = [];
 
         do {
             $next = true;
@@ -88,13 +87,12 @@ class TokenParser extends Twig_TokenParser
                 $p = $this->parser->getExpressionParser()->parseExpression();
                 $parameters[] = $p;
                 $next = false;
-
             } else {
                 //Methods
 
                 if ($value_next == '(') {
                     $method_name = $value_current;
-                } elseif (!in_array($value_current, array('(', ')', ','))) {
+                } elseif (!in_array($value_current, ['(', ')', ','])) {
                     $current_parameters[] = $this->parser->getExpressionParser()->parseExpression();
 
                     $next = false;
@@ -104,7 +102,7 @@ class TokenParser extends Twig_TokenParser
                     $method_level--;
                     if ($method_name != '') {
                         $methods[][$method_name] = $current_parameters;
-                        $current_parameters = array();
+                        $current_parameters = [];
                         $method_name = '';
                         $next = true;
                     }

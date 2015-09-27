@@ -1,9 +1,9 @@
 <?php
 namespace Rocket\UI\Forms\Fields;
 
-    /**
-     * Manage date fields
-     */
+/**
+ * Manage date fields
+ */
 
 /**
  * Creates a date field with Form_element
@@ -28,8 +28,8 @@ class Date extends Field
 
         $this->params['options'] += [
             'datepicker' => true,
-            'formatSubmit' => "dd/mm/yyyy",
-            'format' => "dd/mm/yyyy",
+            'formatSubmit' => 'dd/mm/yyyy',
+            'format' => 'dd/mm/yyyy',
             'firstDay' => 1,
             'selectMonths' => true,
             'selectYears' => true,
@@ -46,7 +46,6 @@ class Date extends Field
         parent::labelAttributes();
         unset($this->label_attributes['for']);
     }
-
 
     /**
      * Adds the script logic to the picker
@@ -106,11 +105,10 @@ class Date extends Field
         $field_date = array_merge($attr, ['id' => $attr['id'] . '_month', 'name' => $attr['id'] . '_month']);
         unset($field_date['value']);
         $this->result .= '<select' . $this->renderAttributes($field_date) . '>';
-        foreach(range(1,12) as $month) {
-            $checked = ($month == $date[1])? ' selected=selected' : '';
-            $this->result .= "<option value='$month'$checked>".strftime("%B", mktime(0,0,0,$month))."</option>";
+        foreach (range(1, 12) as $month) {
+            $checked = ($month == $date[1]) ? ' selected=selected' : '';
+            $this->result .= "<option value='$month'$checked>" . strftime('%B', mktime(0, 0, 0, $month)) . '</option>';
         }
-
 
         $this->result .= '</select>';
 

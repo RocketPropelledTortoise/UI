@@ -1,9 +1,9 @@
 <?php
 namespace Rocket\UI\Forms\Fields;
 
-    /**
-     * Manage file fields
-     */
+/**
+ * Manage file fields
+ */
 
 /**
  * Creates a file field
@@ -17,7 +17,7 @@ class File extends Field
      * @param string $id
      * @param array $data
      */
-    public function __construct($id, $data = array())
+    public function __construct($id, $data = [])
     {
         $this->type = 'file';
 

@@ -28,6 +28,4 @@ class ValidateJS extends ClientValidator
             self::$EQUALTO, //matches
         ];
     }
-
-
 }

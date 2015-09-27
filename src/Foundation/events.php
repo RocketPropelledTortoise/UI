@@ -1,7 +1,7 @@
 <?php
 
-use Assetic\AssetManager;
 use Assetic\Asset\AssetCollection;
+use Assetic\AssetManager;
 use Rocket\UI\Assets\Assetic\Asset\AssetReference;
 use Rocket\UI\Assets\Assetic\Asset\CssAsset;
 use Rocket\UI\Assets\Assetic\Asset\JsAsset;
@@ -20,7 +20,7 @@ Event::listen(
                 [
                     new AssetReference($am, 'script_framework'),
                     new AssetReference($am, 'foundation_jquery'),
-                    new AssetReference($am, 'foundation_bootstrap')
+                    new AssetReference($am, 'foundation_bootstrap'),
                 ]
             )
         );

@@ -32,26 +32,26 @@ class Taxonomy
             ->whereIn('vocabulary_id', $vocabulary_id)
             ->get();
 
-        $translations = array();
+        $translations = [];
         foreach ($terms as $t) {
             $translations[$t->id][$t->language_id] = $t;
         }
 
-        $hierarchy = Hierarchy::whereIn('term_id', $terms->lists('id'))->lists('parent_id','term_id');
+        $hierarchy = Hierarchy::whereIn('term_id', $terms->lists('id'))->lists('parent_id', 'term_id');
 
         unset($terms);
 
-        $table_data = array();
+        $table_data = [];
         foreach ($translations as $langs) {
             $f = array_slice($langs, 0, 1);
             $f = $f[0];
 
-            $row = array(
+            $row = [
                 'id' => $f->id,
-                'parent_id' => (array_key_exists($f->id, $hierarchy))? $hierarchy[$f->id] : null,
+                'parent_id' => (array_key_exists($f->id, $hierarchy)) ? $hierarchy[$f->id] : null,
                 'text' => $f->title,
-                'vid' => $f->vocabulary_id
-            );
+                'vid' => $f->vocabulary_id,
+            ];
 
             if (T::isTranslatable($vocabulary_id[0])) {
                 foreach (I18N::languages() as $lang => $d) {
@@ -65,7 +65,6 @@ class Taxonomy
                         (($langs[1]->type == 1) ? '<strong>' : '') .
                         $content .
                         (($langs[1]->type == 1) ? '</strong>' : '');
-
                 }
             } else {
                 $row['data'][I18N::languages(1, 'iso')] =
@@ -74,18 +73,17 @@ class Taxonomy
                     (($langs[1]->type == 1) ? '</strong>' : '');
             }
 
-
             $table_data[$f->id] = $row;
         }
 
         unset($translations);
 
-        $root_node = array(
+        $root_node = [
             'id' => 'root',
             'parent_id' => null,
             'text' => '',
             'vid' => 'tags',
-        );
+        ];
         foreach (I18N::languages() as $lang => $d) {
             if ($d['id'] == 1) {
                 $root_node['data'][$lang] = 'Root';
@@ -96,11 +94,11 @@ class Taxonomy
 
         $tree = new ParentChildTree(
             $table_data,
-            array(
+            [
                 'create_root' => true,
                 'default_root' => $root_node,
-                'default_root_id' => 'root'
-            )
+                'default_root_id' => 'root',
+            ]
         );
 
         return $tree;
@@ -122,7 +120,7 @@ class Taxonomy
         //get terms
         $tids = T::getTermsForVocabulary($vid);
 
-        $terms = array();
+        $terms = [];
         foreach ($tids as $tid) {
             $term = T::getTerm($tid);
             $terms[$term['term_id']] = ucfirst($term['title']);

@@ -37,7 +37,7 @@ class Field
 
     /**
      * Show the label or not ?
-     * @var boolean
+     * @var bool
      */
     protected $show_label = true;
 
@@ -45,25 +45,25 @@ class Field
      * The attributes that will be applied to the <input>
      * @var array
      */
-    protected $input_attributes = array(
-        'class' => array('elm', 'form-control')
-    );
+    protected $input_attributes = [
+        'class' => ['elm', 'form-control'],
+    ];
 
     /**
      * The attributes that will be applied to the <label>
      * @var array
      */
-    protected $label_attributes = array(
-        'class' => array('elm')
-    );
+    protected $label_attributes = [
+        'class' => ['elm'],
+    ];
 
     /**
      * The attributes that will be applied to the <span> with the label
      * @var array
      */
-    protected $span_attributes = array(
-        'class' => array('field-label', 'control-label')
-    );
+    protected $span_attributes = [
+        'class' => ['field-label', 'control-label'],
+    ];
 
     /**
      * The final content of the field
@@ -74,7 +74,7 @@ class Field
     /**
      * Is the field required or not ?
      *
-     * @var boolean
+     * @var bool
      */
     protected $required = '';
 
@@ -90,13 +90,13 @@ class Field
      *
      * @var array
      */
-    protected $events = array();
+    protected $events = [];
 
     /**
      * The javascript events bound to the label
      * @var array
      */
-    protected $events_label = array();
+    protected $events_label = [];
 
     protected static $templates;
 
@@ -117,15 +117,15 @@ class Field
      * @param string $name
      * @param array $data
      */
-    public function __construct($name, $data = array())
+    public function __construct($name, $data = [])
     {
         $this->name = $name;
 
         $required = false;
-        $value = "";
+        $value = '';
         if ($validator = $this->getValidator()) {
             $required = $validator->isRequired($name);
-            $value = $validator->getValue($name, array_key_exists('default', $data)? $data['default'] : "");
+            $value = $validator->getValue($name, array_key_exists('default', $data) ? $data['default'] : '');
         }
 
         // Default configuration
@@ -148,8 +148,8 @@ class Field
     /**
      * Get the Javascript queueing instance
      *
-     * @return \Rocket\UI\Script\JS
      * @throws \Exception
+     * @return \Rocket\UI\Script\JS
      */
     protected function getJS()
     {
@@ -165,8 +165,8 @@ class Field
     /**
      * Get the Javascript queueing instance
      *
-     * @return \Rocket\UI\Forms\ValidatorAdapters\ValidatorInterface
      * @throws \Exception
+     * @return \Rocket\UI\Forms\ValidatorAdapters\ValidatorInterface
      */
     protected function getValidator()
     {
@@ -180,7 +180,7 @@ class Field
      */
     protected function getDefaults()
     {
-        $defaults = array(
+        $defaults = [
             'title' => '',
             'live' => 'blur',
             'validate' => true,
@@ -190,13 +190,13 @@ class Field
             'width' => 0,
             'height' => 12,
             'margins' => 12, //width in px
-            'data_attributes' => array(),
+            'data_attributes' => [],
             'class' => '',
             'multifield' => false,
-            'maxlength' => array(
-                'slider' => true
-            ),
-        );
+            'maxlength' => [
+                'slider' => true,
+            ],
+        ];
 
         return $defaults;
     }
@@ -252,9 +252,8 @@ class Field
      *
      * @param $method
      * @param $arguments
-     * @return $this
-     *
      * @throws \Exception
+     * @return $this
      */
     public function __call($method, $arguments)
     {
@@ -360,16 +359,19 @@ class Field
                 $this->params['width'] = $w . 'px';
             }
             $this->input_attributes['style']['width'] = $this->params['width'];
+
             return;
         }
 
         if ($this->params['width'] != 0) {
             $this->label_attributes['class'][] = 'col-xs-' . $this->params['width'];
+
             return;
         }
 
         if ($this->params['width'] == 0) {
             $this->label_attributes['class'][] = 'col-full';
+
             return;
         }
     }
@@ -406,7 +408,7 @@ class Field
         return substr($s, 0, 8) . '_' . substr($s, 8, 4) . '_' . substr($s, 12, 4) . '_' . substr($s, 16, 4);
     }
 
-    public function template($string, array $args = array())
+    public function template($string, array $args = [])
     {
         $class = \Rocket\UI\Forms\Templates\Bootstrap::class;
         if (null == self::$templates) {
@@ -477,7 +479,8 @@ class Field
         return $this->result;
     }
 
-    protected function formatErrors($errors) {
+    protected function formatErrors($errors)
+    {
         if (is_string($errors)) {
             return $errors;
         }
@@ -514,7 +517,6 @@ class Field
     protected function renderEvents()
     {
         if (count($this->events) or count($this->events_label)) {
-
             if (count($this->events)) {
                 foreach ($this->events as $event => $action) {
                     $this->getJS()->ready('$("#' . $this->id . '").' . $event . '(function(){ ' . $action . ' });');

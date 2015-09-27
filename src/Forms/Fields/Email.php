@@ -1,9 +1,9 @@
 <?php
 namespace Rocket\UI\Forms\Fields;
 
-    /**
-     * Manage email fields
-     */
+/**
+ * Manage email fields
+ */
 
 /**
  * Password text field
@@ -17,7 +17,7 @@ class Email extends Field
      * @param string $id
      * @param array $data
      */
-    public function __construct($id, $data = array())
+    public function __construct($id, $data = [])
     {
         $this->type = 'email';
 

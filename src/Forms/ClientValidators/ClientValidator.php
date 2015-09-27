@@ -1,29 +1,28 @@
 <?php namespace Rocket\UI\Forms\ClientValidators;
 
-
 abstract class ClientValidator
 {
-    static $REQUIRED = "REQUIRED";
-    static $EMAIL = "EMAIL";
-    static $ALPHA = "ALPHA";
-    static $ALNUM = "ALNUM";
-    static $NUM = "NUM";
-    static $INT = "INT";
-    static $DIGIT = "DIGIT";
-    static $URL = "URL";
-    static $BASE64 = "BASE64";
-    static $CREDIT_CARD = "CREDIT_CARD";
-    static $IP = "IP";
+    public static $REQUIRED = 'REQUIRED';
+    public static $EMAIL = 'EMAIL';
+    public static $ALPHA = 'ALPHA';
+    public static $ALNUM = 'ALNUM';
+    public static $NUM = 'NUM';
+    public static $INT = 'INT';
+    public static $DIGIT = 'DIGIT';
+    public static $URL = 'URL';
+    public static $BASE64 = 'BASE64';
+    public static $CREDIT_CARD = 'CREDIT_CARD';
+    public static $IP = 'IP';
 
     //With params
-    static $MIN_LENGTH = "MIN_LENGTH";
-    static $MAX_LENGTH = "MAX_LENGTH";
-    static $LENGTH_RANGE = "LENGTH_RANGE";
-    static $LENGTH = "LENGTH";
-    static $MIN = "MIN";
-    static $MAX = "MAX";
-    static $RANGE = "RANGE";
-    static $EQUALTO = "EQUALTO";
+    public static $MIN_LENGTH = 'MIN_LENGTH';
+    public static $MAX_LENGTH = 'MAX_LENGTH';
+    public static $LENGTH_RANGE = 'LENGTH_RANGE';
+    public static $LENGTH = 'LENGTH';
+    public static $MIN = 'MIN';
+    public static $MAX = 'MAX';
+    public static $RANGE = 'RANGE';
+    public static $EQUALTO = 'EQUALTO';
 
     abstract public function validChecks();
 }

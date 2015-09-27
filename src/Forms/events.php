@@ -1,7 +1,7 @@
 <?php
 
-use Assetic\AssetManager;
 use Assetic\Asset\AssetCollection;
+use Assetic\AssetManager;
 use Rocket\UI\Assets\Assetic\Asset\AssetReference;
 use Rocket\UI\Assets\Assetic\Asset\CssAsset;
 use Rocket\UI\Assets\Assetic\Asset\JsAsset;
@@ -22,35 +22,34 @@ Event::listen(
         $am->set('forms::pickadate_date', new JsAsset($jsdir . 'pickadate/picker.date.js'));
         $am->set('forms::pickadate_time', new JsAsset($jsdir . 'pickadate/picker.time.js'));
 
-
         $am->set(
             'forms::pickadate',
             new AssetCollection(
-                array(
+                [
                     new AssetReference($am, 'forms::pickadate_base'),
                     new AssetReference($am, 'forms::pickadate_date'),
-                )
+                ]
             )
         );
 
         $am->set(
             'forms::pickatime',
             new AssetCollection(
-                array(
+                [
                     new AssetReference($am, 'forms::pickadate_base'),
                     new AssetReference($am, 'forms::pickadate_time'),
-                )
+                ]
             )
         );
 
         $am->set(
             'forms::pickadatetime',
             new AssetCollection(
-                array(
+                [
                     new AssetReference($am, 'forms::pickadate_base'),
                     new AssetReference($am, 'forms::pickadate_date'),
                     new AssetReference($am, 'forms::pickadate_time'),
-                )
+                ]
             )
         );
     }
@@ -66,35 +65,34 @@ Event::listen(
         $am->set('forms::pickadate_date', new CssAsset($cssdir . 'pickadate/classic.date.css'));
         $am->set('forms::pickadate_time', new CssAsset($cssdir . 'pickadate/classic.time.css'));
 
-
         $am->set(
             'forms::pickadate',
             new AssetCollection(
-                array(
+                [
                     new AssetReference($am, 'forms::pickadate_base'),
                     new AssetReference($am, 'forms::pickadate_date'),
-                )
+                ]
             )
         );
 
         $am->set(
             'forms::pickatime',
             new AssetCollection(
-                array(
+                [
                     new AssetReference($am, 'forms::pickadate_base'),
                     new AssetReference($am, 'forms::pickadate_time'),
-                )
+                ]
             )
         );
 
         $am->set(
             'forms::pickadatetime',
             new AssetCollection(
-                array(
+                [
                     new AssetReference($am, 'forms::pickadate_base'),
                     new AssetReference($am, 'forms::pickadate_date'),
                     new AssetReference($am, 'forms::pickadate_time'),
-                )
+                ]
             )
         );
     }
