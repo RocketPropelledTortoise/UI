@@ -406,12 +406,17 @@ class Field
             return;
         }
 
-        $field = $this->getValidator()->getRules($this->name);
-        if (!empty($field)) {
-            $this->input_attributes['data-rules'] = $field;
-            $this->input_attributes['data-display'] = strip_tags($this->params['title']);
-            $this->input_attributes['data-live'] = $this->params['live'];
-        }
+        //TODO :: finish integration with validation libraries
+
+        /*$validator = $this->getValidator();
+        if ($validator) {
+            $field = $validator->getClientRules($this->name);
+            if (!empty($field)) {
+                $this->input_attributes['data-rules'] = $field;
+                $this->input_attributes['data-display'] = strip_tags($this->params['title']);
+                $this->input_attributes['data-live'] = $this->params['live'];
+            }
+        }*/
     }
 
     /**
