@@ -426,7 +426,7 @@ class Field
 
     public function template($string, array $args = array())
     {
-        $class = 'Form_Templates_Bootstrap';
+        $class = \Rocket\UI\Forms\Templates\Bootstrap::class;
         if (null == self::$templates) {
             self::$templates[$class] = get_class_vars($class);
         }
