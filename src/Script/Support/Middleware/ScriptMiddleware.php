@@ -2,13 +2,11 @@
 
 namespace Rocket\UI\Script\Support\Middleware;
 
-use Symfony\Component\HttpKernel\HttpKernelInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Rocket\UI\Script\Support\Laravel5\Facade as JS;
+use Symfony\Component\HttpFoundation\Request;
 
-class ScriptMiddleware {
-
+class ScriptMiddleware
+{
     /**
      * Handle an incoming request.
      *
@@ -16,7 +14,8 @@ class ScriptMiddleware {
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, \Closure $next) {
+    public function handle($request, \Closure $next)
+    {
         $response = $next($request);
 
         if (!$response->headers->has('content-type') ||
@@ -27,7 +26,8 @@ class ScriptMiddleware {
         return $response;
     }
 
-    protected function insertScript($content) {
+    protected function insertScript($content)
+    {
         $pos = strripos($content, '</body>');
         if ($pos !== false) {
             return substr($content, 0, $pos) . JS::render() . substr($content, $pos);

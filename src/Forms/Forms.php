@@ -36,7 +36,7 @@ class Forms
 
     public static $adapters = [
         \Rocket\UI\Forms\ValidatorAdapters\LaravelValidator::class,
-        \Rocket\UI\Forms\ValidatorAdapters\CodeIgniterFormValidator::class
+        \Rocket\UI\Forms\ValidatorAdapters\CodeIgniterFormValidator::class,
     ];
 
     /**
@@ -50,7 +50,7 @@ class Forms
     }
 
     /**
-     * @param Object $validator
+     * @param object $validator
      * @return bool
      */
     public static function setFormValidator($validator)
@@ -58,17 +58,18 @@ class Forms
         foreach (self::$adapters as $class) {
             if ($class::supports($validator)) {
                 self::$currentValidator = new $class($validator);
+
                 return true;
             }
         }
 
-        throw new \RuntimeException("impossible to find a form adapter for " . get_class($validator));
+        throw new \RuntimeException('impossible to find a form adapter for ' . get_class($validator));
     }
 
     public static function getFormValidator()
     {
         if (!self::$currentValidator) {
-            Log::debug("You have no form validator defined");
+            Log::debug('You have no form validator defined');
         }
 
         return self::$currentValidator;
@@ -111,7 +112,7 @@ class Forms
             throw new \RuntimeException("Cannot create field of type $type");
         }
 
-        return self::field($arguments[0], array_key_exists(1, $arguments)? $arguments[1] : "", $type);
+        return self::field($arguments[0], array_key_exists(1, $arguments) ? $arguments[1] : '', $type);
     }
 
     /**
@@ -126,7 +127,7 @@ class Forms
     {
         $types = self::getFieldTypes();
 
-        $data = array('title' => $title);
+        $data = ['title' => $title];
 
         //Generates the class if we find the right renderer
         if (!array_key_exists($type, $types)) {
@@ -135,8 +136,6 @@ class Forms
 
         return new $types[$type]($id, $data);
     }
-
-
 
     public static function open(array $options = [])
     {

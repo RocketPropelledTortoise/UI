@@ -1,9 +1,9 @@
 <?php
 namespace Rocket\UI\Forms\Fields;
 
-    /**
-     * Manage radio fields
-     */
+/**
+ * Manage radio fields
+ */
 
 /**
  * Renders radio buttons
@@ -17,7 +17,7 @@ class Radio extends Field
      * @param string $id
      * @param array $data
      */
-    public function __construct($id, $data = array())
+    public function __construct($id, $data = [])
     {
         $this->type = 'radio';
 
@@ -32,7 +32,7 @@ class Radio extends Field
         $this->input_attributes['name'] = $this->name;
         $this->input_attributes['type'] = 'radio';
         $this->input_attributes['id'] = $this->id;
-        $this->input_attributes['class'] = array(); //removes elm
+        $this->input_attributes['class'] = []; //removes elm
 
         if (array_key_exists('check_value', $this->params) && $this->params['check_value']) {
             $this->input_attributes['value'] = $this->params['check_value'];

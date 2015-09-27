@@ -1,9 +1,9 @@
 <?php
 namespace Rocket\UI\Forms\Fields;
 
-    /**
-     * Manage hidden fields
-     */
+/**
+ * Manage hidden fields
+ */
 
 /**
  * Hidden field
@@ -17,7 +17,7 @@ class Hidden extends Field
      * @param string $id
      * @param array $data
      */
-    public function __construct($id, $data = array())
+    public function __construct($id, $data = [])
     {
         $this->type = 'hidden';
         $this->show_label = false;

@@ -1,6 +1,5 @@
 <?php namespace Rocket\UI\Forms\ValidatorAdapters;
 
-
 class CodeIgniterFormValidator implements ValidatorInterface
 {
     /**
@@ -8,11 +7,12 @@ class CodeIgniterFormValidator implements ValidatorInterface
      */
     protected $validator;
 
-    public function __construct($validator) {
+    public function __construct($validator)
+    {
         $this->validator = $validator;
     }
 
-    public function getValue($name, $default = "")
+    public function getValue($name, $default = '')
     {
         return $this->validator->set_value($name, $default);
     }

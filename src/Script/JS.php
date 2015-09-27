@@ -3,15 +3,12 @@
 /**
  * Javascript class
  */
-
 namespace Rocket\UI\Script;
 
 /**
  * Javascript class
  *
  * Store all javascript needed for the page to output it in a single block at the end of the page
- *
- * @package Provider
  */
 class JS
 {
@@ -19,10 +16,10 @@ class JS
      * Holds all javascript content
      *
      * @var array {
-     *     @type array $file All files that need to be included
-     *     @type array $script All raw scripts
-     *     @type array $ready All scripts that need to be wrapped in "document.ready()"
-     *     @type array $settings The settings for the javascript page
+     *     @var array $file All files that need to be included
+     *     @var array $script All raw scripts
+     *     @var array $ready All scripts that need to be wrapped in "document.ready()"
+     *     @var array $settings The settings for the javascript page
      * }
      */
     protected $queue;
@@ -32,7 +29,7 @@ class JS
      */
     public function __construct($queue)
     {
-        $this->queue = $queue + array('file' => array(), 'script' => array(), 'ready' => array(), 'setting' => array());
+        $this->queue = $queue + ['file' => [], 'script' => [], 'ready' => [], 'setting' => []];
     }
 
     /**
@@ -44,6 +41,7 @@ class JS
     public function file($content)
     {
         $this->queue['file'][] = $content;
+
         return $this;
     }
 
@@ -56,6 +54,7 @@ class JS
     public function script($content)
     {
         $this->queue['script'][] = $content;
+
         return $this;
     }
 
@@ -68,6 +67,7 @@ class JS
     public function ready($content)
     {
         $this->queue['ready'][] = $content;
+
         return $this;
     }
 
@@ -80,6 +80,7 @@ class JS
     public function setting(array $content)
     {
         $this->queue['setting'] = array_replace_recursive($this->queue['setting'], $content);
+
         return $this;
     }
 
@@ -153,7 +154,7 @@ class JS
     {
         $settings = $this->resolveSettings();
 
-        return 'jQuery.extend(APP.settings, ' . json_encode($settings) . ");";
+        return 'jQuery.extend(APP.settings, ' . json_encode($settings) . ');';
     }
 
     /**

@@ -7,12 +7,9 @@ use Illuminate\Contracts\Support\Jsonable;
  * Javascript class
  *
  * Store all javascript needed for the page to output it in a single block at the end of the page
- *
- * @package Provider
  */
 class JS extends \Rocket\UI\Script\JS
 {
-
     /**
      * Prepare the queue
      */
@@ -49,6 +46,6 @@ class JS extends \Rocket\UI\Script\JS
 
     public function __toString()
     {
-        return "";
+        return '';
     }
 }

@@ -1,9 +1,9 @@
 <?php
 namespace Rocket\UI\Forms\Fields;
 
-    /**
-     * Manages an HTMLArea
-     */
+/**
+ * Manages an HTMLArea
+ */
 
 /**
  * Creates an HTMLArea with Form_element
@@ -12,18 +12,17 @@ namespace Rocket\UI\Forms\Fields;
  */
 class Htmlarea extends Textarea
 {
-
     /**
      * {@inheritdoc}
      */
     protected function getDefaults()
     {
         return parent::getDefaults() + [
-            'htmlarea' => array(
+            'htmlarea' => [
                 'style' => 'advanced',
                 'images' => true,
-                'css' => true
-            )
+                'css' => true,
+            ],
         ];
     }
 
@@ -32,8 +31,8 @@ class Htmlarea extends Textarea
      */
     protected function renderScript()
     {
-        $controls = array(
-            'simple' => array(
+        $controls = [
+            'simple' => [
                 'orderedlist',
                 'unorderedlist',
                 '|',
@@ -54,9 +53,9 @@ class Htmlarea extends Textarea
                 '|',
                 'cut',
                 'copy',
-                'paste'
-            ),
-            'advanced' => array(
+                'paste',
+            ],
+            'advanced' => [
                 'subscript',
                 'superscript',
                 '|',
@@ -91,19 +90,19 @@ class Htmlarea extends Textarea
                 '|',
                 'cut',
                 'copy',
-                'paste'
-            )
-        );
+                'paste',
+            ],
+        ];
 
-        $config = array(
+        $config = [
             'id' => $this->id,
             'controls' => $controls[$this->params['htmlarea']['style']],
             'footer' => false,
-            'fonts' => array('Verdana', 'Arial', 'Georgia', 'Trebuchet MS'),
+            'fonts' => ['Verdana', 'Arial', 'Georgia', 'Trebuchet MS'],
             'xhtml' => true,
-            'images' => (bool)$this->params['htmlarea']['images'],
+            'images' => (bool) $this->params['htmlarea']['images'],
             'bodyid' => 'editor',
-        );
+        ];
 
         if ($this->params['htmlarea']['css']) {
             $config['cssfile'] = \URL::to('css/minimal.css');

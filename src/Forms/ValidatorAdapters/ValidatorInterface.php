@@ -1,6 +1,5 @@
 <?php namespace Rocket\UI\Forms\ValidatorAdapters;
 
-
 interface ValidatorInterface
 {
     public static function supports($object);
@@ -11,7 +10,7 @@ interface ValidatorInterface
 
     public function hasError($name);
 
-    public function getValue($name, $default = "");
+    public function getValue($name, $default = '');
 
     public function isRequired($name);
 }
