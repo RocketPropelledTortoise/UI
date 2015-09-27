@@ -8,6 +8,25 @@
 
 namespace Rocket\UI\Forms;
 
+/**
+ * Class Forms
+ * @method static Fields\Field date($id, $title = "")
+ * @method static Fields\Field time($id, $title = "")
+ * @method static Fields\Field datetime($id, $title = "")
+ * @method static Fields\Field textarea($id, $title = "")
+ * @method static Fields\Field htmlarea($id, $title = "")
+ * @method static Fields\Field text($id, $title = "")
+ * @method static Fields\Field password($id, $title = "")
+ * @method static Fields\Field radio($id, $title = "")
+ * @method static Fields\Field email($id, $title = "")
+ * @method static Fields\Field autocomplete($id, $title = "")
+ * @method static Fields\Field select($id, $title = "")
+ * @method static Fields\Field checkbox($id, $title = "")
+ * @method static Fields\Field hidden($id, $title = "")
+ * @method static Fields\Field honeypot($id, $title = "")
+ * @method static Fields\Field file($id, $title = "")
+ * @method static Fields\Field kaptcha($id, $title = "")
+ */
 class Forms
 {
     /**
@@ -37,10 +56,23 @@ class Forms
         return self::$config['field_types'];
     }
 
-    //TODO :: init field types statically
-    //public static function __callStatic($method, $arguments)
-    //{
-    //}
+    /**
+     * Shortcut to create a field
+     *
+     * @param $type
+     * @param $arguments
+     * @return Fields\Field
+     */
+    public static function __callStatic($type, $arguments)
+    {
+        $types = self::getFieldTypes();
+
+        if (!array_key_exists($type, $types)) {
+            throw new \RuntimeException("Cannot create field of type $type");
+        }
+
+        return self::field($arguments[0], array_key_exists(1, $arguments)? $arguments[1] : "", $type);
+    }
 
     /**
      * Create a field
