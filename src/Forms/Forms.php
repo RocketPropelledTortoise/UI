@@ -135,4 +135,28 @@ class Forms
 
         return new $types[$type]($id, $data);
     }
+
+
+
+    public static function open(array $options = [])
+    {
+        if (array_key_exists('validator', $options)) {
+            static::setFormValidator($options['validator']);
+            unset($options['validator']);
+        }
+
+        return Form::open($options);
+    }
+
+    public static function close()
+    {
+        static::$currentValidator = null;
+
+        return Form::close();
+    }
+
+    public static function submit($value = null, $options = [])
+    {
+        return Form::submit($value, $options);
+    }
 }

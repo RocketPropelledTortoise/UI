@@ -1,11 +1,9 @@
 <?php
 namespace Rocket\UI\Forms\Support\Twig;
 
+use Rocket\UI\Forms\Forms;
 use Twig_Extension;
-
-/**
- * Form extension for twig
- */
+use Twig_SimpleFunction;
 
 /**
  * Form extension for twig
@@ -14,6 +12,18 @@ use Twig_Extension;
  */
 class Extension extends Twig_Extension
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function getFunctions()
+    {
+        return [
+            new Twig_SimpleFunction('forms_open', [Forms::class, 'open'], ['is_safe' => ['html']]),
+            new Twig_SimpleFunction('forms_close', [Forms::class, 'close'], ['is_safe' => ['html']]),
+            new Twig_SimpleFunction('forms_submit', [Forms::class, 'submit'], ['is_safe' => ['html']]),
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
