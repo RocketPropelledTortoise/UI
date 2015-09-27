@@ -4,24 +4,24 @@ class FunctionTest extends PHPUnit_Framework_TestCase
 {
     public function jsonEncodeData()
     {
-        return array(
-            array(
+        return [
+            [
                 '{"callback":function(){ return "hey"; }}',
-                array('callback' => 'function(){ return "hey"; }')
-            ),
-            array(
+                ['callback' => 'function(){ return "hey"; }'],
+            ],
+            [
                 '{"multi_level_array":{"callback":function(){ return "hey"; }}}',
-                array('multi_level_array' => array('callback' => 'function(){ return "hey"; }'))
-            ),
-            array(
+                ['multi_level_array' => ['callback' => 'function(){ return "hey"; }']],
+            ],
+            [
                 'function(){ return "hey"; }',
-                'function(){ return "hey"; }'
-            ),
-            array(
+                'function(){ return "hey"; }',
+            ],
+            [
                 '"un test\""',
-                'un test"'
-            )
-        );
+                'un test"',
+            ],
+        ];
     }
 
     /**

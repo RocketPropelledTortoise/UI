@@ -11,42 +11,42 @@ class LaravelJSTest extends PHPUnit_Framework_TestCase
     }
 
     public static $BEGIN = "<script type=\"text/javascript\">var APP = APP || {'settings': {}, 'behaviors':{}, 'locale':{}, 'utilities':{}};";
-    public static $END = "</script>";
+    public static $END = '</script>';
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->js = new \Rocket\UI\Script\Support\Laravel5\JS(array());
+        $this->js = new \Rocket\UI\Script\Support\Laravel5\JS([]);
     }
 
     public function settingsData()
     {
         $stdClass = new \stdClass();
-        $stdClass->name = "application_name";
+        $stdClass->name = 'application_name';
 
         $arrayable = new ArrayableStub();
 
         $jsonable = new JsonableStub();
 
-        return array(
-            array(
+        return [
+            [
                 '{"website":"www.onigoetz.ch"}',
-                array('website' => 'www.onigoetz.ch')
-            ),
-            array(
+                ['website' => 'www.onigoetz.ch'],
+            ],
+            [
                 '{"application":{"name":"application_name"}}',
-                array('application' => $stdClass)
-            ),
-            array(
+                ['application' => $stdClass],
+            ],
+            [
                 '{"application":["foo","bar"]}',
-                array('application' => $arrayable)
-            ),
-            array(
+                ['application' => $arrayable],
+            ],
+            [
                 '{"json":"foo"}',
-                array('json' => $jsonable)
-            )
-        );
+                ['json' => $jsonable],
+            ],
+        ];
     }
 
     /**
@@ -72,6 +72,6 @@ class ArrayableStub implements Arrayable
 {
     public function toArray()
     {
-        return array('foo', 'bar');
+        return ['foo', 'bar'];
     }
 }

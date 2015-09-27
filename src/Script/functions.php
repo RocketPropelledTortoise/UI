@@ -13,10 +13,11 @@ function json_encode_with_functions($json)
         if (strpos($json, 'function') === 0) {
             return $json;
         }
+
         return json_encode($json);
     }
 
-    $strtr = array();
+    $strtr = [];
 
     _json_traverse($json, $strtr);
     $final_json = json_encode($json);

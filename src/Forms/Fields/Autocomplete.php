@@ -1,9 +1,9 @@
 <?php
 namespace Rocket\UI\Forms\Fields;
 
-    /**
-     * Manage autocomplete fields
-     */
+/**
+ * Manage autocomplete fields
+ */
 
 /**
  * Adds the autocomplete logic
@@ -17,12 +17,12 @@ class Autocomplete extends Field
      */
     protected function getDefaults()
     {
-        return parent::getDefaults() + array(
-            'autocomplete' => array(
+        return parent::getDefaults() + [
+            'autocomplete' => [
                 'multiple' => false,
-                'length' => 2
-            ),
-        );
+                'length' => 2,
+            ],
+        ];
     }
 
     /**
@@ -45,7 +45,6 @@ class Autocomplete extends Field
     protected function renderScript()
     {
         if ($this->params['autocomplete']['multiple']) {
-
             $select_callback = '';
             if (isset($this->params['autocomplete']['callback'])) {
                 $select_callback = $this->params['autocomplete']['callback'];
@@ -87,10 +86,9 @@ class Autocomplete extends Field
                 });'
             );
         } else {
-
-            $params = array(
-                'minLength' => $this->params['autocomplete']['length']
-            );
+            $params = [
+                'minLength' => $this->params['autocomplete']['length'],
+            ];
 
             if (!empty($this->params['autocomplete']['url'])) {
                 $params['source'] = \URL::to($this->params['autocomplete']['url']);

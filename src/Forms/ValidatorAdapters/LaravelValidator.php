@@ -2,8 +2,8 @@
 
 use Illuminate\Validation\Validator;
 
-class LaravelValidator implements ValidatorInterface {
-
+class LaravelValidator implements ValidatorInterface
+{
     /**
      * @var Validator
      */
@@ -11,7 +11,8 @@ class LaravelValidator implements ValidatorInterface {
 
     protected $session;
 
-    public function __construct($validator) {
+    public function __construct($validator)
+    {
         $this->validator = $validator;
     }
 
@@ -50,10 +51,10 @@ class LaravelValidator implements ValidatorInterface {
             }
         }
 
-        return "";
+        return '';
     }
 
-    public function getValue($name, $default = "")
+    public function getValue($name, $default = '')
     {
         if ($this->getSession()->hasOldInput($name)) {
             return $this->getSession()->getOldInput($name);

@@ -1,9 +1,9 @@
 <?php
 namespace Rocket\UI\Forms\Fields;
 
-    /**
-     * Mangage dateTime fields
-     */
+/**
+ * Mangage dateTime fields
+ */
 
 /**
  * Creates a datefield with Form_element
@@ -35,17 +35,17 @@ class Datetime extends Field
                 'onSet' => "function(item) {
                     if ( ! 'select' in item ) return;
                     setTimeout( function() { $('#{$this->id}').get(0).updateDate(); }, 0 );
-                }"
+                }",
             ]
         );
 
         $options_time = json_encode_with_functions(
             [
-                'format' => "H:i",
+                'format' => 'H:i',
                 'onSet' => "function(item) {
                     if ( ! 'select' in item ) return;
                     setTimeout( function() { $('#{$this->id}').get(0).updateDate(); }, 0 );
-                }"
+                }",
             ]
         );
 

@@ -3,7 +3,6 @@
 /**
  * Generate a Taxonomy to a Tree Table
  */
-
 namespace Rocket\UI\Taxonomy;
 
 use Rocket\Taxonomy\Support\Laravel5\Facade as T;
@@ -11,7 +10,6 @@ use Rocket\Translation\Support\Laravel5\Facade as I18N;
 
 /**
  * Class TreeTable
- * @package Taxonomy
  */
 class TreeTable
 {
@@ -19,7 +17,7 @@ class TreeTable
      * Render a tree table
      *
      * @param array $tree
-     * @param integer $vid
+     * @param int $vid
      */
     public static function render($tree, $vid, $short = false)
     {
@@ -27,10 +25,10 @@ class TreeTable
 
         $heads = [];
         if (!$short) {
-            $heads = array();
+            $heads = [];
             if (T::isTranslatable($vid)) {
                 foreach (I18N::languages() as $lang) {
-                    $heads[] = t($lang['name'], array(), 'languages');
+                    $heads[] = t($lang['name'], [], 'languages');
                 }
             } else {
                 $heads[] = t('Mot', [], 'rocket/taxonomy');
@@ -40,7 +38,7 @@ class TreeTable
         }
 
         //TODO :: externalize table
-        echo \Table::quick($heads, $rows, array('id' => 'sortable'));
+        echo \Table::quick($heads, $rows, ['id' => 'sortable']);
     }
 
     /**
@@ -53,16 +51,15 @@ class TreeTable
      */
     public static function node($tree, $vid, $parent = 0, $short = false)
     {
-        $rows = array();
+        $rows = [];
 
         foreach ($tree as $node) {
-
-            $row = ($short)? [self::getTitle($node)] : self::getRow($node, $vid);
+            $row = ($short) ? [self::getTitle($node)] : self::getRow($node, $vid);
 
             if ($parent != null) {
-                $rows[] = array('data' => $row, 'id' => 'n-'.$node['id'], 'class'  => 'child-of-n-'.$parent);
+                $rows[] = ['data' => $row, 'id' => 'n-' . $node['id'], 'class'  => 'child-of-n-' . $parent];
             } else {
-                $rows[] = array('data' => $row, 'id' => 'n-'.$node['id']);
+                $rows[] = ['data' => $row, 'id' => 'n-' . $node['id']];
             }
 
             if (!empty($node['childs'])) {
@@ -76,7 +73,7 @@ class TreeTable
 
     public static function getTitle($node)
     {
-        return '<span class="icon-taxonomy-'.T::vocabulary($node['vid']).'">&nbsp;</span>' . $node['data'][I18N::languages(1, 'iso')];
+        return '<span class="icon-taxonomy-' . T::vocabulary($node['vid']) . '">&nbsp;</span>' . $node['data'][I18N::languages(1, 'iso')];
     }
 
     public static function getRow($node, $vid)
@@ -86,7 +83,7 @@ class TreeTable
         if (\Taxonomy::isTranslatable($vid)) {
             foreach (I18N::languages() as $lang => $d) {
                 if ($d['id'] == 1) {
-                    $row[] = '<span class="icon-taxonomy-'.T::vocabulary($node['vid']).'">&nbsp;</span>' . $node['data'][$lang];
+                    $row[] = '<span class="icon-taxonomy-' . T::vocabulary($node['vid']) . '">&nbsp;</span>' . $node['data'][$lang];
                 } else {
                     $row[] = $node['data'][$lang];
                 }

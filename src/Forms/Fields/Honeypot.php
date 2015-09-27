@@ -17,7 +17,7 @@ class Honeypot extends Field
      * @param string $id
      * @param array $data
      */
-    public function __construct($id, $data = array())
+    public function __construct($id, $data = [])
     {
         $this->id = $data;
         $this->time_field = $data['time'];

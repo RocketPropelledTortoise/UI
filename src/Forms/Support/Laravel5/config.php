@@ -1,7 +1,7 @@
 <?php
 
-return array(
-    'field_types' => array(
+return [
+    'field_types' => [
         'date' => '\Rocket\UI\Forms\Fields\Date',
         'time' => '\Rocket\UI\Forms\Fields\Time',
         'datetime' => '\Rocket\UI\Forms\Fields\Datetime',
@@ -18,6 +18,6 @@ return array(
         'hidden' => '\Rocket\UI\Forms\Fields\Hidden',
         'honeypot' => '\Rocket\UI\Forms\Fields\Honeypot',
         'file' => '\Rocket\UI\Forms\Fields\File',
-        'kaptcha' => '\Rocket\UI\Forms\Fields\Kaptcha'
-    )
-);
+        'kaptcha' => '\Rocket\UI\Forms\Fields\Kaptcha',
+    ],
+];

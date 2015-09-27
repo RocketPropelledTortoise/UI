@@ -6,7 +6,6 @@
  * Time: 11:08
  * To change this template use File | Settings | File Templates.
  */
-
 use \Rocket\UI\Table\Table;
 
 class TableTest extends PHPUnit_Framework_TestCase
@@ -16,6 +15,7 @@ class TableTest extends PHPUnit_Framework_TestCase
         $class = new ReflectionClass('\\Rocket\\UI\\Table\\Table');
         $method = $class->getMethod($name);
         $method->setAccessible(true);
+
         return $method;
     }
 
@@ -24,38 +24,39 @@ class TableTest extends PHPUnit_Framework_TestCase
         $class = new ReflectionClass('\\Rocket\\UI\\Table\\Table');
         $property = $class->getProperty($attribute);
         $property->setAccessible(true);
+
         return $property->getValue($object);
     }
 
     public function cellData()
     {
-        return array(
-            array(
+        return [
+            [
                 '<td>test</td>',
-                array(
-                    'test'
-                )
-            ),
-            array(
-                '<th>test</th>',
-                array(
+                [
                     'test',
-                    true
-                )
-            ),
-            array(
+                ],
+            ],
+            [
+                '<th>test</th>',
+                [
+                    'test',
+                    true,
+                ],
+            ],
+            [
                 '<td class="testclass">test</td>',
-                array(
-                    ['data' => 'test', 'class' => 'testclass']
-                )
-            ),
-            array(
+                [
+                    ['data' => 'test', 'class' => 'testclass'],
+                ],
+            ],
+            [
                 '<td class="testclass" colspan="2">test</td>',
-                array(
-                    ['data' => 'test', 'class' => 'testclass', 'colspan' => 2]
-                )
-            ),
-        );
+                [
+                    ['data' => 'test', 'class' => 'testclass', 'colspan' => 2],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -72,35 +73,35 @@ class TableTest extends PHPUnit_Framework_TestCase
 
     public function rowData()
     {
-        return array(
-            array(
+        return [
+            [
                 '<tr><td>cell1</td><td>cell2</td></tr>' . "\n",
-                array(
-                    ['cell1', 'cell2']
-                )
-            ),
-            array(
+                [
+                    ['cell1', 'cell2'],
+                ],
+            ],
+            [
                 '<tr><td>cell1</td><td>cell2</td><td>cell3</td></tr>' . "\n",
-                array(
-                    ['cell1', 'cell2', 'cell3']
-                )
-            ),
-            array(
+                [
+                    ['cell1', 'cell2', 'cell3'],
+                ],
+            ],
+            [
                 '<tr><td>cell1</td><td>cell2</td><td class="testclass">test</td></tr>' . "\n",
-                array(
-                    ['cell1', 'cell2', ['data' => 'test', 'class' => 'testclass']]
-                )
-            ),
-            array(
+                [
+                    ['cell1', 'cell2', ['data' => 'test', 'class' => 'testclass']],
+                ],
+            ],
+            [
                 '<tr class="testclass"><td>cell1</td><td>cell2</td><td>cell3</td></tr>' . "\n",
-                array(
+                [
                     [
                         'data' => ['cell1', 'cell2', 'cell3'],
-                        'class' => 'testclass'
-                    ]
-                )
-            ),
-        );
+                        'class' => 'testclass',
+                    ],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -117,31 +118,31 @@ class TableTest extends PHPUnit_Framework_TestCase
 
     public function headData()
     {
-        return array(
-            array(
+        return [
+            [
                 "<thead>\n<tr><th>cell1</th><th>cell2</th></tr>\n</thead>",
                 true,
-                ['cell1', 'cell2']
-            ),
-            array(
+                ['cell1', 'cell2'],
+            ],
+            [
                 '<tr><th>cell1</th><th>cell2</th><th>cell3</th></tr>' . "\n",
                 false,
-                ['cell1', 'cell2', 'cell3']
-            ),
-            array(
+                ['cell1', 'cell2', 'cell3'],
+            ],
+            [
                 "<thead>\n<tr><th>cell1</th><th>cell2</th><th class=\"testclass\">test</th></tr>\n</thead>",
                 true,
-                ['cell1', 'cell2', ['data' => 'test', 'class' => 'testclass']]
-            ),
-            array(
+                ['cell1', 'cell2', ['data' => 'test', 'class' => 'testclass']],
+            ],
+            [
                 "<thead>\n<tr class=\"testclass\"><th>cell1</th><th>cell2</th><th>cell3</th></tr>\n</thead>",
                 true,
                 [
                     'data' => ['cell1', 'cell2', 'cell3'],
-                    'class' => 'testclass'
-                ]
-            ),
-        );
+                    'class' => 'testclass',
+                ],
+            ],
+        ];
     }
 
     /**
@@ -158,28 +159,28 @@ class TableTest extends PHPUnit_Framework_TestCase
 
     public function attributesData()
     {
-        return array(
-            array(
-                "table table-striped sticky-enabled",
+        return [
+            [
+                'table table-striped sticky-enabled',
                 true,
-                null
-            ),
-            array(
-                "table table-striped",
+                null,
+            ],
+            [
+                'table table-striped',
                 false,
-                null
-            ),
-            array(
-                "table table-nostyle sticky-enabled",
+                null,
+            ],
+            [
+                'table table-nostyle sticky-enabled',
                 true,
-                "table-nostyle"
-            ),
-            array(
-                "table testclass table-striped sticky-enabled",
+                'table-nostyle',
+            ],
+            [
+                'table testclass table-striped sticky-enabled',
                 true,
-                "testclass"
-            ),
-        );
+                'testclass',
+            ],
+        ];
     }
 
     /**
@@ -191,7 +192,7 @@ class TableTest extends PHPUnit_Framework_TestCase
         $method = self::getMethod('prepareTableClasses');
 
         //init table
-        $table = new Table([], [], ($attributes? ['class' => $attributes] : []));
+        $table = new Table([], [], ($attributes ? ['class' => $attributes] : []));
 
         $method->invokeArgs($table, [$has_header]);
 
@@ -203,46 +204,46 @@ class TableTest extends PHPUnit_Framework_TestCase
 
     public function quickData()
     {
-        return array(
-            array(
-                '<table class="table table-striped">' . "\n" . '</table>'. "\n",
-                [[], []]
-            ),
-            array(
-                '<table class="table table-striped">' . "\n" . '<caption>a caption</caption>' . "\n" . '</table>'. "\n",
-                [[], [], [], 'a caption']
-            ),
-            array(
+        return [
+            [
+                '<table class="table table-striped">' . "\n" . '</table>' . "\n",
+                [[], []],
+            ],
+            [
+                '<table class="table table-striped">' . "\n" . '<caption>a caption</caption>' . "\n" . '</table>' . "\n",
+                [[], [], [], 'a caption'],
+            ],
+            [
                 '<table class="table table-striped sticky-enabled">' . "\n" .
                 '<tr><th>head1</th><th>head2</th></tr>' . "\n" .
-                '</table>'. "\n",
-                [['head1', 'head2'], []]
-            ),
-            array(
+                '</table>' . "\n",
+                [['head1', 'head2'], []],
+            ],
+            [
                 '<table class="table table-striped sticky-enabled">' . "\n" .
-                '<thead>'. "\n" .
+                '<thead>' . "\n" .
                 '<tr><th>head1</th><th>head2</th></tr>' . "\n" .
-                '</thead><tbody>'. "\n" .
+                '</thead><tbody>' . "\n" .
                 '<tr><td>r1c1</td><td>r1c2</td></tr>' . "\n" .
                 '<tr><td>r2c1</td><td>r2c2</td></tr>' . "\n" .
-                '</tbody>'. "\n" .
-                '</table>'. "\n",
-                [['head1', 'head2'], [['r1c1', 'r1c2'], ['r2c1', 'r2c2']]]
-            ),
-            array(
+                '</tbody>' . "\n" .
+                '</table>' . "\n",
+                [['head1', 'head2'], [['r1c1', 'r1c2'], ['r2c1', 'r2c2']]],
+            ],
+            [
                 '<table class="table table-striped sticky-enabled">' . "\n" .
-                '<thead>'. "\n" .
+                '<thead>' . "\n" .
                 '<tr><th>head1</th><th>head2</th></tr>' . "\n" .
-                '</thead><tbody>'. "\n" .
+                '</thead><tbody>' . "\n" .
                 '<tr><td>r1c1</td><td>r1c2</td></tr>' . "\n" .
-				'</tbody>'. "\n" .
-                '<tfoot>'. "\n" .
-                '<tr><td>r2c1</td><td>r2c2</td></tr>'. "\n" .
-                '</tfoot>' . "\n" .                
-                '</table>'. "\n",
-                [['head1', 'head2'], [['r1c1', 'r1c2'], ['footer' => true, 'data' => ['r2c1', 'r2c2']]]]
-            ),
-        );
+                '</tbody>' . "\n" .
+                '<tfoot>' . "\n" .
+                '<tr><td>r2c1</td><td>r2c2</td></tr>' . "\n" .
+                '</tfoot>' . "\n" .
+                '</table>' . "\n",
+                [['head1', 'head2'], [['r1c1', 'r1c2'], ['footer' => true, 'data' => ['r2c1', 'r2c2']]]],
+            ],
+        ];
     }
 
     /**

@@ -3,13 +3,12 @@
 namespace Rocket\UI\Assets;
 
 use App;
-use Assetic\Asset\AssetInterface;
-use Event;
-use Response;
 use Assetic\Asset\AssetCache;
-use Assetic\Asset\AssetCollection;
+use Assetic\Asset\AssetInterface;
 use Assetic\AssetManager;
 use Assetic\Cache\FilesystemCache;
+use Event;
+use Response;
 use Rocket\UI\Assets\Assetic\Asset\CssAsset;
 use Rocket\UI\Assets\Assetic\WeightedAssetCollection;
 use Rocket\Utilities\Format;
@@ -83,12 +82,12 @@ class Controller extends \BaseController
 
                 //Debug informations
                 echo "\n/*  Memory usage: " . Format::getReadableSize(memory_get_usage(true));
-                echo ", Peak usage: " . Format::getReadableSize(memory_get_peak_usage(true));
-                echo ", Elapsed time: " . Format::getReadableTime((microtime(true) - LARAVEL_START) * 1000) . " */";
+                echo ', Peak usage: ' . Format::getReadableSize(memory_get_peak_usage(true));
+                echo ', Elapsed time: ' . Format::getReadableTime((microtime(true) - LARAVEL_START) * 1000) . ' */';
             }
         );
 
-        $response->headers->set('Content-type',$content_type);
+        $response->headers->set('Content-type', $content_type);
 
         //TODO :: better way to choose to cache or not
         if (App::environment() == 'production') {
@@ -98,7 +97,7 @@ class Controller extends \BaseController
                 ->setExpires(new DateTime("@$time"))
                 ->setMaxAge($seconds_to_cache)
                 ->setPublic()
-                ->setVary("Accept-Encoding");
+                ->setVary('Accept-Encoding');
         }
 
         return $response;
@@ -106,9 +105,9 @@ class Controller extends \BaseController
 }
 
 //TODO :: move or remove strposa
-function strposa($haystack, $needles = array(), $offset = 0)
+function strposa($haystack, $needles = [], $offset = 0)
 {
-    $chr = array();
+    $chr = [];
     foreach (array_keys($needles) as $needle) {
         $res = strpos($haystack, $needle, $offset);
         if ($res !== false) {
