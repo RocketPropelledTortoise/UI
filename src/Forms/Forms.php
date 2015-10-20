@@ -6,22 +6,22 @@ use Rocket\UI\Forms\ValidatorAdapters\ValidatorInterface;
 
 /**
  * Class Forms
- * @method static Fields\Field date($id, $title = "")
- * @method static Fields\Field time($id, $title = "")
- * @method static Fields\Field datetime($id, $title = "")
- * @method static Fields\Field textarea($id, $title = "")
- * @method static Fields\Field htmlarea($id, $title = "")
+ * @method static Fields\Date date($id, $title = "")
+ * @method static Fields\Time time($id, $title = "")
+ * @method static Fields\Datetime datetime($id, $title = "")
+ * @method static Fields\Textarea textarea($id, $title = "")
+ * @method static Fields\Htmlarea htmlarea($id, $title = "")
  * @method static Fields\Field text($id, $title = "")
- * @method static Fields\Field password($id, $title = "")
- * @method static Fields\Field radio($id, $title = "")
- * @method static Fields\Field email($id, $title = "")
- * @method static Fields\Field autocomplete($id, $title = "")
- * @method static Fields\Field select($id, $title = "")
- * @method static Fields\Field checkbox($id, $title = "")
- * @method static Fields\Field hidden($id, $title = "")
- * @method static Fields\Field honeypot($id, $title = "")
- * @method static Fields\Field file($id, $title = "")
- * @method static Fields\Field kaptcha($id, $title = "")
+ * @method static Fields\Password password($id, $title = "")
+ * @method static Fields\Radio radio($id, $title = "")
+ * @method static Fields\Email email($id, $title = "")
+ * @method static Fields\Autocomplete autocomplete($id, $title = "")
+ * @method static Fields\Select select($id, $title = "")
+ * @method static Fields\Checkbox checkbox($id, $title = "")
+ * @method static Fields\Hidden hidden($id, $title = "")
+ * @method static Fields\Honeypot honeypot($id, $title = "")
+ * @method static Fields\File file($id, $title = "")
+ * @method static Fields\Kaptcha kaptcha($id, $title = "")
  */
 class Forms
 {
@@ -33,6 +33,7 @@ class Forms
     public static $config;
 
     public static $currentValidator;
+    public static $currentData;
 
     public static $adapters = [
         \Rocket\UI\Forms\ValidatorAdapters\LaravelValidator::class,
@@ -51,13 +52,15 @@ class Forms
 
     /**
      * @param Object $validator
+     * @param mixed $data
+     * @param mixed $defaults
      * @return bool
      */
-    public static function setFormValidator($validator)
+    public static function setFormValidator($validator, $data = [], $defaults = [])
     {
         foreach (self::$adapters as $class) {
             if ($class::supports($validator)) {
-                self::$currentValidator = new $class($validator);
+                self::$currentValidator = new $class($validator, $data, $defaults);
                 return true;
             }
         }
@@ -65,6 +68,9 @@ class Forms
         throw new \RuntimeException("impossible to find a form adapter for " . get_class($validator));
     }
 
+    /**
+     * @return ValidatorInterface
+     */
     public static function getFormValidator()
     {
         if (!self::$currentValidator) {
@@ -136,7 +142,14 @@ class Forms
         return new $types[$type]($id, $data);
     }
 
+    public static function getValue($field, $default = '')
+    {
+        $validator = static::getFormValidator();
 
+        if ($validator) {
+            return $validator->getValue($field, $default);
+        }
+    }
 
     public static function open(array $options = [])
     {

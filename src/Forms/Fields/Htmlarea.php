@@ -1,14 +1,9 @@
-<?php
-namespace Rocket\UI\Forms\Fields;
-
-    /**
-     * Manages an HTMLArea
-     */
+<?php namespace Rocket\UI\Forms\Fields;
 
 /**
  * Creates an HTMLArea with Form_element
  *
- * @author Stéphane Goetz
+ * @method $this htmlarea(array $config)
  */
 class Htmlarea extends Textarea
 {

@@ -39,7 +39,7 @@ class Submit extends Field
     /**
      * So that we can't set the width
      */
-    protected function width()
+    protected function applyWidth()
     {
     }
 

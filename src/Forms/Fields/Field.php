@@ -8,10 +8,16 @@ use Rocket\UI\Forms\Forms;
  *
  * @author Stéphane Goetz
  *
- * @method Field value(string $value) the value in the field
- * @method Field inline(bool $enabled)
- * @method Field id(string $id)
- * @method Field autocomplete(array $config)
+ * @method $this value(string $value) the value in the field
+ * @method $this inline(bool $enabled)
+ * @method $this id(string $id)
+ * @method $this width(string $width)
+ * @method $this height(string $height)
+ * @method $this tip(string $tip)
+ * @method $this label_style(string $label)
+ * @method $this writable(boolean $writable)
+ * @method $this validate(boolean $validate)
+ * @method $this maxlength(int $max)
  */
 class Field
 {
@@ -346,7 +352,7 @@ class Field
     /**
      * Adds the width to the field
      */
-    protected function width()
+    protected function applyWidth()
     {
         if (strpos($this->params['width'], '%') or
             strpos($this->params['width'], 'em') or
@@ -440,7 +446,7 @@ class Field
         $this->input_attributes['value'] = $this->params['value'];
 
         $this->classes();
-        $this->width();
+        $this->applyWidth();
 
         $this->isRequired();
         $this->hasError();

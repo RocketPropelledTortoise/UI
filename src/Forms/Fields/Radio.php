@@ -1,14 +1,11 @@
-<?php
-namespace Rocket\UI\Forms\Fields;
-
-    /**
-     * Manage radio fields
-     */
+<?php namespace Rocket\UI\Forms\Fields;
 
 /**
  * Renders radio buttons
  *
- * @author Stéphane Goetz
+ * @method $this checked(boolean $checked)
+ * @method $this values(array $config)
+ * @method $this check_value(string $value)
  */
 class Radio extends Field
 {
@@ -38,7 +35,7 @@ class Radio extends Field
             $this->input_attributes['value'] = $this->params['check_value'];
         }
 
-        if (set_checkbox($this->name) != '') {
+        if ($this->getValidator()->getValue($this->name) == $this->input_attributes['value']) {
             $this->input_attributes['checked'] = 'checked';
         } elseif (array_key_exists('checked', $this->params)) {
             if ($this->params['checked'] !== false) {

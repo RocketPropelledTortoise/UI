@@ -1,14 +1,12 @@
 <?php
 namespace Rocket\UI\Forms\Fields;
 
-    /**
-     * Manage checkboxes
-     */
+use Illuminate\Support\Collection;
 
 /**
  * Adds a checkbox
  *
- * @author Stéphane Goetz
+ * @method $this checked(boolean $checked)
  */
 class Checkbox extends Field
 {
@@ -34,21 +32,35 @@ class Checkbox extends Field
         $this->input_attributes['id'] = $this->id;
         $this->input_attributes['name'] = $this->name;
         $this->input_attributes['type'] = 'checkbox';
-        $this->input_attributes['class'] = array('checkbox'); //removes elm
+        $this->input_attributes['class'] = array('checkbox'); //removes `elm`
 
         $this->input_attributes['value'] = $this->params['check_value'];
 
-        if (set_checkbox($this->name, $this->params['check_value']) != '') {
-            $this->input_attributes['checked'] = 'checked';
-        }
-
-        if (array_key_exists('checked', $this->params)
-            && $this->params['checked'] !== false
-        ) {
+        if ($this->getCheckboxCheckedState()) {
             $this->input_attributes['checked'] = 'checked';
         }
 
         $this->params['label_position'] = 'after';
+    }
+
+    /**
+     * Get the check state for a checkbox input.
+     *
+     * @return bool
+     */
+    protected function getCheckboxCheckedState()
+    {
+        $value = $this->input_attributes['value'];
+        $default = array_key_exists('checked', $this->params)? $this->params['checked'] : false;
+        $current = $this->getValidator()->getValue($this->name, $default);
+
+        if (is_array($current)) {
+            return in_array($value, $current);
+        } elseif ($current instanceof Collection) {
+            return $current->contains('id', $value);
+        } else {
+            return (bool) $current;
+        }
     }
 
     protected function classes()
