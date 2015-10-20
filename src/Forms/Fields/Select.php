@@ -1,14 +1,10 @@
-<?php
-namespace Rocket\UI\Forms\Fields;
+<?php namespace Rocket\UI\Forms\Fields;
 
-/**
- * Manage select fields
- */
 
 /**
  * Adds a select box
  *
- * @author Stéphane Goetz
+ * @method $this values(array $config)
  */
 class Select extends Field
 {

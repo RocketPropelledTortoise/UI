@@ -17,7 +17,6 @@
         "twig/twig": "To use the forms twig extension"
     },
     "autoload": {
-		"files": ["functions.php"],
         "psr-4": {"Rocket\\UI\\Forms\\": ""}
     },
     "extra": {

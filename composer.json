@@ -29,8 +29,7 @@
     "autoload": {
         "files": [
             "src/Foundation/functions.php",
-            "src/Script/functions.php",
-			"src/Forms/functions.php"
+            "src/Script/functions.php"
         ],
         "psr-4": {
             "Rocket\\UI\\": "src/"

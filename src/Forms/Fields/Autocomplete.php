@@ -1,14 +1,9 @@
-<?php
-namespace Rocket\UI\Forms\Fields;
-
-/**
- * Manage autocomplete fields
- */
+<?php namespace Rocket\UI\Forms\Fields;
 
 /**
  * Adds the autocomplete logic
  *
- * @author Stéphane Goetz
+ * @method $this autocomplete(array $config)
  */
 class Autocomplete extends Field
 {
