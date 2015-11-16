@@ -96,7 +96,7 @@ class LaravelValidator implements ValidatorInterface
      * @param string $default
      * @return mixed
      */
-    public function getValue($name, $default = "")
+    public function getValue($name, $default = '')
     {
         // 1.
         $old = $this->getSession()->getOldInput($this->transformKey($name));
@@ -119,7 +119,7 @@ class LaravelValidator implements ValidatorInterface
             return $value;
         }
 
-        return "";
+        return '';
     }
 
     /**

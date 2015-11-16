@@ -61,6 +61,7 @@ class Forms
         foreach (self::$adapters as $class) {
             if ($class::supports($validator)) {
                 self::$currentValidator = new $class($validator, $data, $defaults);
+
                 return true;
             }
         }
