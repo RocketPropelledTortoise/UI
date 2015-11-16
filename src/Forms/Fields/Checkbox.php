@@ -51,7 +51,7 @@ class Checkbox extends Field
     protected function getCheckboxCheckedState()
     {
         $value = $this->input_attributes['value'];
-        $default = array_key_exists('checked', $this->params)? $this->params['checked'] : false;
+        $default = array_key_exists('checked', $this->params) ? $this->params['checked'] : false;
         $current = $this->getValidator()->getValue($this->name, $default);
 
         if (is_array($current)) {

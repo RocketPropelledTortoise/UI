@@ -22,7 +22,7 @@ class CodeIgniterFormValidator implements ValidatorInterface
     /**
      * {@inheritdoc}
      */
-    public function getValue($name, $default = "")
+    public function getValue($name, $default = '')
     {
         return $this->validator->set_value($name, $default);
     }

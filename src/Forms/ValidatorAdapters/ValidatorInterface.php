@@ -34,7 +34,7 @@ interface ValidatorInterface
      * @return bool
      */
     public function hasError($name);
-    
+
     /**
      * Get the value for a field.
      *

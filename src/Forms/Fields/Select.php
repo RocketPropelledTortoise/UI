@@ -1,6 +1,5 @@
 <?php namespace Rocket\UI\Forms\Fields;
 
-
 /**
  * Adds a select box
  *
