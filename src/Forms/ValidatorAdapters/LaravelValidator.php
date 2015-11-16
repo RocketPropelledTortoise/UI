@@ -99,7 +99,7 @@ class LaravelValidator implements ValidatorInterface
     public function getValue($name, $default = "")
     {
         // 1.
-        $old = $this->getSession()->getOldInput($this->transformKey($key));
+        $old = $this->getSession()->getOldInput($this->transformKey($name));
         if (!is_null($old)) {
             return $old;
         }
