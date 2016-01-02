@@ -9,10 +9,10 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.5.0",
         "rocket/core": "~1.0.0",
-        "illuminate/support": ">=5.0.0",
-        "kriswallsmith/assetic": "1.1.*"
+        "illuminate/support": "~5.2",
+        "kriswallsmith/assetic": "1.*"
     },
     "replace": {
         "rocket/assets": "self.version",
