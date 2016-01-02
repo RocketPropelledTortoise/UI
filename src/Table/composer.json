@@ -1,7 +1,7 @@
 {
     "name": "rocket/table",
     "description": "Table display helper",
-    "licence": "MIT",
+    "license": "MIT",
     "authors": [
         {
             "name": "Stéphane Goetz",

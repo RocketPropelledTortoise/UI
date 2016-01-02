@@ -1,7 +1,7 @@
 {
     "name": "rocket/foundation",
     "description": "Framework base",
-    "licence": "MIT",
+    "license": "MIT",
     "authors": [
         {
             "name": "Stéphane Goetz",

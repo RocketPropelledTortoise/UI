@@ -1,7 +1,7 @@
 {
     "name": "rocket/script",
     "description": "Enqueue scripts, take control of your Javascript",
-	"licence": "MIT",
+	"license": "MIT",
     "authors": [
         {
             "name": "Stéphane Goetz",

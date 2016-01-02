@@ -1,7 +1,7 @@
 {
     "name": "rocket/assets",
     "description": "Manage and serve assets",
-    "licence": "MIT",
+    "license": "MIT",
     "authors": [
         {
             "name": "Stéphane Goetz",

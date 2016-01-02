@@ -1,7 +1,7 @@
 {
     "name": "rocket/forms",
     "description": "Forms creation made easy",
-	"licence": "MIT",
+	"license": "MIT",
     "authors": [
         {
             "name": "Stéphane Goetz",
