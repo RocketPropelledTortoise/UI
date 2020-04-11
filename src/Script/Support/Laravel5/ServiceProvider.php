@@ -22,7 +22,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
     protected function shareJS()
     {
-        $this->app['js'] = $this->app->share(
+        $this->app->singleton(
+            'js',
             function () {
                 $js = new JS([]);
                 $this->app['events']->fire('js.init', [$js]);
