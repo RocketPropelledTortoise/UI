@@ -1,14 +1,9 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: sgoetz
- * Date: 10.09.13
- * Time: 11:08
- * To change this template use File | Settings | File Templates.
- */
-use \Rocket\UI\Table\Table;
 
-class TableTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+use Rocket\UI\Table\Table;
+
+class TableTest extends TestCase
 {
     protected static function getMethod($name)
     {

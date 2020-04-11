@@ -25,6 +25,12 @@ class WeightedAssetCollection extends AssetCollection
         return parent::dump($additionalFilter);
     }
 
+    public function all()
+    {
+        $this->flattenAndOrderAssets();
+        return parent::all();
+    }
+
     public function add(AssetInterface $asset)
     {
         parent::add($asset);
@@ -39,7 +45,7 @@ class WeightedAssetCollection extends AssetCollection
         }
 
         //recursively get assets
-        $original = $this->all();
+        $original = parent::all();
         foreach ($original as $asset) {
             $this->flatten($asset);
             $this->removeLeaf($asset);
@@ -60,20 +66,23 @@ class WeightedAssetCollection extends AssetCollection
 
     protected function flatten($asset)
     {
-        $current = $asset;
-        if ($current instanceof AssetReference) {
-            $current = $current->getAsset();
-        }
-
-        if ($current instanceof AssetCollection) {
-            foreach ($current->all() as $leaf) {
+        if ($asset instanceof AssetCollection) {
+            foreach ($asset->all() as $leaf) {
                 $this->flatten($leaf);
             }
 
             return;
         }
 
-        $weight = ($current instanceof WeightedAsset) ? $current->getWeight() : 0;
-        $this->orderable[$weight][] = $current;
+        $weight = 0;
+        if ($asset instanceof WeightedAsset) {
+            $weight = $asset->getWeight();
+        }
+
+        if ($asset instanceof AssetReference) {
+            $weight = $asset->getAsset()->getWeight();
+        }
+ 
+        $this->orderable[$weight][] = $asset;
     }
 }

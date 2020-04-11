@@ -14,11 +14,22 @@ class AssetReference implements AssetInterface
     private $am;
     private $name;
     private $filters = [];
+    private $clone = false;
+    private $asset;
 
     public function __construct(AssetManager $am, $name)
     {
         $this->am = $am;
         $this->name = $name;
+    }
+
+    public function __clone()
+    {
+        $this->clone = true;
+
+        if ($this->asset) {
+            $this->asset = clone $this->asset;
+        }
     }
 
     public function ensureFilter(FilterInterface $filter)
@@ -73,6 +84,11 @@ class AssetReference implements AssetInterface
         return $this->callAsset(__FUNCTION__);
     }
 
+    public function getSourceDirectory()
+    {
+        return $this->callAsset(__FUNCTION__);
+    }
+
     public function getTargetPath()
     {
         return $this->callAsset(__FUNCTION__);
@@ -108,20 +124,39 @@ class AssetReference implements AssetInterface
      */
     public function getAsset()
     {
-        return $this->am->get($this->name);
+        return $this->resolve();
     }
 
-    private function callAsset($method, $arguments = [])
+    // private
+
+    private function callAsset($method, $arguments = array())
     {
-        return call_user_func_array([$this->getAsset(), $method], $arguments);
+        $asset = $this->resolve();
+
+        return call_user_func_array(array($asset, $method), $arguments);
     }
 
     private function flushFilters()
     {
-        $asset = $this->getAsset();
+        $asset = $this->resolve();
 
         while ($filter = array_shift($this->filters)) {
             $asset->ensureFilter($filter);
         }
+    }
+
+    private function resolve()
+    {
+        if ($this->asset) {
+            return $this->asset;
+        }
+
+        $asset = $this->am->get($this->name);
+
+        if ($this->clone) {
+            $asset = $this->asset = clone $asset;
+        }
+
+        return $asset;
     }
 }

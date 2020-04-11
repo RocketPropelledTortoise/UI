@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5.0",
+        "php": ">=7.2.0",
         "rocket/core": "~1.0.0",
         "illuminate/support": "~5.2",
         "kriswallsmith/assetic": "1.*"
@@ -39,6 +39,10 @@
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test:coverage-html": "vendor/bin/phpunit --coverage-html=build/coverage"
     },
     "minimum-stability": "dev",
 	"prefer-stable": true

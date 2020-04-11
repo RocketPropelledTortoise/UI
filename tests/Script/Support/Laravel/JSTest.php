@@ -2,8 +2,9 @@
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
+use PHPUnit\Framework\TestCase;
 
-class LaravelJSTest extends PHPUnit_Framework_TestCase
+class LaravelJSTest extends TestCase
 {
     protected function assertJSRender($content)
     {
@@ -13,7 +14,7 @@ class LaravelJSTest extends PHPUnit_Framework_TestCase
     public static $BEGIN = "<script type=\"text/javascript\">var APP = APP || {'settings': {}, 'behaviors':{}, 'locale':{}, 'utilities':{}};";
     public static $END = '</script>';
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

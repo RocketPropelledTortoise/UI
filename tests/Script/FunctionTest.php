@@ -1,6 +1,7 @@
 <?php
 
-class FunctionTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+class FunctionTest extends TestCase
 {
     public function jsonEncodeData()
     {
