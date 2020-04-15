@@ -36,7 +36,7 @@ class Taxonomy
             $translations[$t->id][$t->language_id] = $t;
         }
 
-        $hierarchy = Hierarchy::whereIn('term_id', $terms->lists('id'))->lists('parent_id', 'term_id');
+        $hierarchy = Hierarchy::whereIn('term_id', $terms->pluck('id'))->pluck('parent_id', 'term_id');
 
         unset($terms);
 
