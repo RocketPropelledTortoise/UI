@@ -26,7 +26,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             'js',
             function () {
                 $js = new JS([]);
-                $this->app['events']->fire('js.init', [$js]);
+                $this->app['events']->dispatch('js.init', [$js]);
 
                 return $js;
             }
