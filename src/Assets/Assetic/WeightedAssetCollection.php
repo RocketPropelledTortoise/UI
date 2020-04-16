@@ -3,7 +3,7 @@
 use Assetic\Asset\AssetCollection;
 use Assetic\Asset\AssetInterface;
 use Assetic\Filter\FilterInterface;
-use Rocket\UI\Assets\Assetic\Asset\AssetReference;
+use Assetic\Asset\AssetReference;
 use Rocket\UI\Assets\Assetic\Asset\WeightedAsset;
 
 class WeightedAssetCollection extends AssetCollection
@@ -64,6 +64,14 @@ class WeightedAssetCollection extends AssetCollection
         $this->flattened = true;
     }
 
+    protected function getAssetReferenceResolveMethod()
+    {
+        $class = new \ReflectionClass(AssetReference::class);
+        $method = $class->getMethod("resolve");
+        $method->setAccessible(true);
+        return $method;
+    }
+
     protected function flatten($asset)
     {
         if ($asset instanceof AssetCollection) {
@@ -80,7 +88,7 @@ class WeightedAssetCollection extends AssetCollection
         }
 
         if ($asset instanceof AssetReference) {
-            $weight = $asset->getAsset()->getWeight();
+            $weight = $this->getAssetReferenceResolveMethod()->invokeArgs($asset, [])->getWeight();
         }
  
         $this->orderable[$weight][] = $asset;
