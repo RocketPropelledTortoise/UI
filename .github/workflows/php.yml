@@ -54,8 +54,9 @@ jobs:
     - name: Upload code coverage
       run: php ocular.phar code-coverage:upload --format=php-clover coverage.clover
 
-    - run: pwd
-    - run: cat coverage.clover
+      # https://community.sonarsource.com/t/code-coverage-doesnt-work-with-github-action/16747/5
+    - name: fix code coverage paths
+      run: sed -i 's/\/home\/runner\/work\/UI\/UI\//\/github\/workspace\//g' coverage.clover
       
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@v1.1
