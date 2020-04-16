@@ -53,6 +53,9 @@ jobs:
     - run: wget https://scrutinizer-ci.com/ocular.phar
     - name: Upload code coverage
       run: php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+
+    - run: pwd
+    - run: cat coverage.clover
       
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@v1.1
