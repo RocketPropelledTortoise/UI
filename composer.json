@@ -11,24 +11,20 @@
     "require": {
         "php": ">=7.2.0",
         "rocket/core": "~1.0.0",
-        "illuminate/support": "~5.2",
-        "kriswallsmith/assetic": "1.*"
+        "illuminate/support": "^5.2 || ^6.0"
     },
     "replace": {
-        "rocket/assets": "self.version",
         "rocket/forms": "self.version",
-        "rocket/foundation": "self.version",
         "rocket/script": "self.version",
         "rocket/table": "self.version",
         "rocket/taxonomy-ui": "self.version"
     },
     "require-dev": {
         "mockery/mockery": ">=0.9.0",
-        "phpunit/phpunit": ">=4.0.0"
+        "phpunit/phpunit": "^8.0 || ^9.0"
     },
     "autoload": {
         "files": [
-            "src/Foundation/functions.php",
             "src/Script/functions.php"
         ],
         "psr-4": {

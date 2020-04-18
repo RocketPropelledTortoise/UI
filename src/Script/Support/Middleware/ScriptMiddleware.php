@@ -3,7 +3,6 @@
 namespace Rocket\UI\Script\Support\Middleware;
 
 use Rocket\UI\Script\Support\Laravel5\Facade as JS;
-use Symfony\Component\HttpFoundation\Request;
 
 class ScriptMiddleware
 {

@@ -11,14 +11,6 @@ use Illuminate\Contracts\Support\Jsonable;
 class JS extends \Rocket\UI\Script\JS
 {
     /**
-     * Prepare the queue
-     */
-    public function __construct($queue)
-    {
-        parent::__construct($queue);
-    }
-
-    /**
      * Walk the settings array to output them as a pure array
      *
      * @return string
@@ -42,10 +34,5 @@ class JS extends \Rocket\UI\Script\JS
         );
 
         return $queue_copy;
-    }
-
-    public function __toString()
-    {
-        return '';
     }
 }

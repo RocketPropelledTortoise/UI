@@ -10,14 +10,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
-        $this->loadEvents();
 
         $this->shareJS();
-    }
-
-    protected function loadEvents()
-    {
-        include dirname(dirname(__DIR__)) . '/events.php';
     }
 
     protected function shareJS()
