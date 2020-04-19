@@ -20,8 +20,7 @@
         "rocket/taxonomy-ui": "self.version"
     },
     "require-dev": {
-        "mockery/mockery": ">=0.9.0",
-        "phpunit/phpunit": "^8.0 || ^9.0"
+        "mockery/mockery": "^1.0"
     },
     "autoload": {
         "files": [
@@ -48,8 +47,8 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit",
-        "test:coverage-html": "vendor/bin/phpunit --coverage-html=build/coverage"
+        "test": "build/phpunit",
+        "test:coverage-html": "build/phpunit --coverage-html=build/coverage"
     },
     "minimum-stability": "dev",
 	"prefer-stable": true

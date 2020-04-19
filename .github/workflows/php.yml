@@ -1,4 +1,4 @@
-name: PHP Composer
+name: PHP
 
 on:
   push:
@@ -27,15 +27,20 @@ jobs:
     - name: Validate composer.json and composer.lock
       run: composer validate
 
+    - name: Install tools
+      run: ./scripts/install_tools.sh
+
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
     - name: Run test suite
       run: composer run-script test
 
-  scrutinizer-ci:
+  sonarcloud:
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request'
+
+    name: "SonarCloud"
     steps:
     - uses: actions/checkout@v1
     - name: Setup PHP
@@ -47,12 +52,11 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
+    - name: Install tools
+      run: ./scripts/install_tools.sh
+
     - name: Run test suite
       run: composer run-script test -- --coverage-clover=coverage.clover --log-junit=test-report.xml
-
-    - run: wget https://scrutinizer-ci.com/ocular.phar
-    - name: Upload code coverage
-      run: php ocular.phar code-coverage:upload --format=php-clover coverage.clover
 
       # https://community.sonarsource.com/t/code-coverage-doesnt-work-with-github-action/16747/5
     - name: fix code coverage paths
