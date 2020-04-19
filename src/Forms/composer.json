@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5.0",
+        "php": ">=7.2",
         "rocket/script": "~1.0.0"
     },
     "suggest": {

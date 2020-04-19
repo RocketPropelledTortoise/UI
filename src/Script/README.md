@@ -1,11 +1,11 @@
 # Script queueing
 
-[![Latest Version](https://img.shields.io/github/release/RocketPropelledTortoise/ui.svg?style=flat-square)](https://github.com/RocketPropelledTortoise/ui/releases)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/rocket/ui/blob/master/LICENSE.md)
-[![Build Status](https://img.shields.io/travis/RocketPropelledTortoise/UI/master.svg?style=flat-square)](https://travis-ci.org/RocketPropelledTortoise/UI)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/RocketPropelledTortoise/UI.svg?style=flat-square)](https://scrutinizer-ci.com/g/rocket/ui/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/RocketPropelledTortoise/UI.svg?style=flat-square)](https://scrutinizer-ci.com/g/rocket/ui)
+[![Latest Version](https://img.shields.io/github/release/RocketPropelledTortoise/UI.svg?style=flat-square)](https://github.com/RocketPropelledTortoise/UI/releases)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/RocketPropelledTortoise/UI/blob/master/LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/rocket/ui.svg?style=flat-square)](https://packagist.org/packages/rocket/ui)
+[![Sonar Quality Gate](https://img.shields.io/sonar/alert_status/RocketPropelledTortoise_UI?server=https%3A%2F%2Fsonarcloud.io&style=flat-square)](https://sonarcloud.io/dashboard?id=RocketPropelledTortoise_UI)
+[![Sonar Coverage](https://img.shields.io/sonar/coverage/RocketPropelledTortoise_UI?server=https%3A%2F%2Fsonarcloud.io&style=flat-square)](https://sonarcloud.io/dashboard?id=RocketPropelledTortoise_UI)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/RocketPropelledTortoise/UI/PHP?style=flat-square)](https://github.com/RocketPropelledTortoise/UI/actions)
 
 In modern web applications, script execution should be done at the end of a page's loading.
 This class is a very simple wrapper for this: queue scripts and render them when needed
