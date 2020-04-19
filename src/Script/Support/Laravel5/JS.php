@@ -35,4 +35,13 @@ class JS extends \Rocket\UI\Script\JS
 
         return $queue_copy;
     }
+
+    /**
+     * This method is used by Twig/TwigBridge when adding scripts in templates
+     * @return string
+     */
+    public function __toString()
+    {
+        return '';
+    }
 }

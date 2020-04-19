@@ -34,6 +34,17 @@
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Rocket\\UI\\Script\\Support\\Laravel5\\ServiceProvider",
+                "Rocket\\UI\\Forms\\Support\\Laravel5\\ServiceProvider"
+            ],
+            "aliases": {
+                "JS": "Rocket\\UI\\Script\\Support\\Laravel5\\Facade",
+                "Table": "Rocket\\UI\\Table\\Table",
+                "Forms": "Rocket\\UI\\Forms\\Forms"
+            }
         }
     },
     "scripts": {
